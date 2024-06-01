@@ -45,7 +45,7 @@ public class BaseServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         log.info("服务器启动中...");
-
+        log.warn("通过默认配置启动...");
         try {
             serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup,workerGroup);
