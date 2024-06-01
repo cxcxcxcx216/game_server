@@ -15,6 +15,7 @@ public class LogicServer extends BaseServer {
 
     public LogicServer(){
         super();
+
     }
 
     public static void main(String[] args) {

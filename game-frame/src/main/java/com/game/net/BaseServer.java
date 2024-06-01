@@ -1,9 +1,9 @@
 package com.game.net;
 
 import com.game.consumer.DefaultConsumer;
-import com.game.handler.MessageDecoder;
-import com.game.handler.MessageEncoder;
-import com.game.handler.ServerHandler;
+import com.game.net.handler.MessageDecoder;
+import com.game.net.handler.MessageEncoder;
+import com.game.net.handler.ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -42,8 +42,8 @@ public class BaseServer {
      * 通过默认设置启动
      */
     public void startDefault(){
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workerGroup = new NioEventLoopGroup(1);
         log.info("服务器启动中...");
         log.warn("通过默认配置启动...");
         try {

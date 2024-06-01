@@ -1,4 +1,4 @@
-package com.game.handler;
+package com.game.net.handler;
 
 
 import com.game.consumer.Consumer;
