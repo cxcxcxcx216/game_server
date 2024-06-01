@@ -1,6 +1,6 @@
 package com.game.net;
 
-import com.game.consumer.ProtoMsgConsumer;
+import com.game.consumer.DefaultConsumer;
 import com.game.handler.MessageDecoder;
 import com.game.handler.MessageEncoder;
 import com.game.handler.ServerHandler;
@@ -57,7 +57,7 @@ public class BaseServer {
                             ch.pipeline()
                                     .addLast(new MessageDecoder())
                                     .addLast(new MessageEncoder())
-                                    .addLast(new ServerHandler(new ProtoMsgConsumer()));
+                                    .addLast(new ServerHandler(new DefaultConsumer()));
                         }
                     });
 

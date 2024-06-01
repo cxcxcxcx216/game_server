@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-public class ProtoMsgConsumer implements Consumer{
+public class DefaultConsumer implements Consumer{
     @Override
     public void consume(ChannelHandlerContext ctx, ProtoMsg reqProtoMsg) {
 
