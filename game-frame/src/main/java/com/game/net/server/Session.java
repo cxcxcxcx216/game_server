@@ -1,4 +1,4 @@
-package com.game.net;
+package com.game.net.server;
 
 import io.netty.channel.Channel;
 import lombok.Data;

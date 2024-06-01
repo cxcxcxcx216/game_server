@@ -1,6 +1,6 @@
 package com.game;
 
-import com.game.net.BaseServer;
+import com.game.net.server.BaseServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
