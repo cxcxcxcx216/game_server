@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServerHandler extends SimpleChannelInboundHandler<ProtoMsg> {
+public class ServerInboundHandler extends SimpleChannelInboundHandler<ProtoMsg> {
 
     private Consumer consumer;
 

@@ -3,7 +3,7 @@ package com.game.net.server;
 import com.game.consumer.DefaultConsumer;
 import com.game.net.server.handler.MessageDecoder;
 import com.game.net.server.handler.MessageEncoder;
-import com.game.net.server.handler.ServerHandler;
+import com.game.net.server.handler.ServerInboundHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -35,7 +35,20 @@ public class BaseServer {
     }
 
     public void start(){
+        try {
+            serverBootstrap.group(bossGroup,workerGroup);
 
+            serverBootstrap.channel(NioServerSocketChannel.class)
+                    .childHandler(channelChannelInitializer);
+            ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+            log.info("服务器启动成功！");
+            channelFuture.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
+        }
     }
 
     /**
@@ -57,11 +70,9 @@ public class BaseServer {
                             ch.pipeline()
                                     .addLast(new MessageDecoder())
                                     .addLast(new MessageEncoder())
-                                    .addLast(new ServerHandler(new DefaultConsumer()));
+                                    .addLast(new ServerInboundHandler(new DefaultConsumer()));
                         }
                     });
-
-
             ChannelFuture channelFuture = serverBootstrap.bind(9001).sync();
             log.info("服务器启动成功！");
             channelFuture.channel().closeFuture().sync();
