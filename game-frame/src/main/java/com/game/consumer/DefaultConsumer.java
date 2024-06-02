@@ -13,15 +13,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DefaultConsumer implements Consumer{
     @Override
-    public void consume(ChannelHandlerContext ctx, ProtoMsg msg) {
+    public void consume(ChannelHandlerContext ctx, Object msg) {
+        ProtoMsg protoMsg = (ProtoMsg) msg;
         log.info("ip = {}，消息={}",ctx.channel().remoteAddress().toString(),msg);
         //消费消息
-        BaseHandler handler = HandlerFactory.getHandler(msg.getCode());
+        BaseHandler handler = HandlerFactory.getHandler(protoMsg.getCode());
         if (handler == null)
             return;
         //封装消息
         Task task = Task.createTask();
-        task.setMsg(msg);
+        task.setMsg(protoMsg);
         IProcessor processor = ProcessorFactory.getProcessor(handler.getProcessorId());
         processor.execute(task);
     }

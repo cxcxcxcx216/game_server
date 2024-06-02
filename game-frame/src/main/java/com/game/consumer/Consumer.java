@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 
 public interface Consumer {
-    void consume(ChannelHandlerContext ctx, ProtoMsg reqProtoMsg);
+    void consume(ChannelHandlerContext ctx, Object msg);
 
     void channelActive(ChannelHandlerContext ctx);
 
