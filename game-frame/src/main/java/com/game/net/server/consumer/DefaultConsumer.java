@@ -1,5 +1,7 @@
-package com.game.consumer;
+package com.game.net.server.consumer;
 
+import com.game.consumer.Consumer;
+import com.game.consumer.Task;
 import com.game.handler.BaseHandler;
 import com.game.handler.HandlerFactory;
 import com.game.msg.ProtoMsg;
@@ -11,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-public class DefaultConsumer implements Consumer{
+public class DefaultConsumer implements Consumer {
     @Override
     public void consume(ChannelHandlerContext ctx, Object msg) {
         ProtoMsg protoMsg = (ProtoMsg) msg;

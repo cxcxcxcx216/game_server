@@ -1,6 +1,6 @@
 package com.game.net.server;
 
-import com.game.consumer.DefaultConsumer;
+import com.game.net.server.consumer.DefaultConsumer;
 import com.game.net.server.handler.MessageDecoder;
 import com.game.net.server.handler.MessageEncoder;
 import com.game.net.server.handler.ServerInboundHandler;
