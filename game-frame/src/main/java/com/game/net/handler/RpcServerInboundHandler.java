@@ -1,4 +1,4 @@
-package com.game.net.rpc.handler;
+package com.game.net.handler;
 
 
 import com.game.consumer.Consumer;

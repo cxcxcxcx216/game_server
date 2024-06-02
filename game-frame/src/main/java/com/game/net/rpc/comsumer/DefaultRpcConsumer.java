@@ -4,7 +4,7 @@ import com.game.consumer.Consumer;
 import com.game.msg.RpcMsg;
 import io.netty.channel.ChannelHandlerContext;
 
-public class RpcConsumer implements Consumer {
+public class DefaultRpcConsumer implements Consumer {
     @Override
     public void consume(ChannelHandlerContext ctx, Object msg) {
         RpcMsg rpcMsg = (RpcMsg) msg;

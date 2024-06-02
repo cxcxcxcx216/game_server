@@ -1,6 +1,7 @@
-package com.game.net.server.handler;
+package com.game.net.handler;
 
 import com.game.constant.ProtocolConstants;
+import com.game.msg.JsonMsg;
 import com.game.msg.ProtoMsg;
 import com.game.util.BitUtils;
 import io.netty.buffer.ByteBuf;
@@ -9,7 +10,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.util.List;
 
-public class MessageDecoder extends ByteToMessageDecoder {
+public class JsonMessageDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf msg, List<Object> out) throws Exception {
@@ -21,7 +22,7 @@ public class MessageDecoder extends ByteToMessageDecoder {
         msg.markReaderIndex();
         int dataLength = BitUtils.SwapInt16(msg.readShort());//消息体长度
 
-        dataLength = dataLength < 0 ? (dataLength + 65536):dataLength;
+        dataLength = dataLength < 0 ? (dataLength + 65536) : dataLength;
         if (!msg.isReadable(dataLength)) {//数据不够长，重置位置
             msg.resetReaderIndex();
             return;
@@ -32,10 +33,11 @@ public class MessageDecoder extends ByteToMessageDecoder {
 
         byte[] body = new byte[dataLength - ProtocolConstants.HEAD_LENGTH];
         msg.readBytes(body, 0, body.length);
-        ProtoMsg protoMsg = new ProtoMsg();
-        protoMsg.setCode(messageId);
-        protoMsg.setHead(headFlag);
-        protoMsg.setData(body);
-        out.add(protoMsg);
+        JsonMsg jsonMsg = new JsonMsg();
+        jsonMsg.setCode(messageId);
+        jsonMsg.setHead(headFlag);
+        jsonMsg.setData(body);
+        out.add(jsonMsg);
     }
+
 }

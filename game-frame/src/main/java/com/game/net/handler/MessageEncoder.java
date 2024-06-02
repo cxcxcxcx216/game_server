@@ -1,4 +1,4 @@
-package com.game.net.server.handler;
+package com.game.net.handler;
 
 import com.game.constant.ProtocolConstants;
 import com.game.msg.ProtoMsg;

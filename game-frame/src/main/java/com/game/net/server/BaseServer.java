@@ -1,9 +1,9 @@
 package com.game.net.server;
 
 import com.game.net.server.consumer.DefaultConsumer;
-import com.game.net.server.handler.MessageDecoder;
-import com.game.net.server.handler.MessageEncoder;
-import com.game.net.server.handler.ServerInboundHandler;
+import com.game.net.handler.MessageDecoder;
+import com.game.net.handler.MessageEncoder;
+import com.game.net.handler.ServerInboundHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
