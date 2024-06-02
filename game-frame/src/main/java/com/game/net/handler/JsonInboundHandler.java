@@ -5,10 +5,12 @@ import com.game.consumer.Consumer;
 import com.game.msg.JsonMsg;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.Data;
 
 
 import java.util.Base64;
 
+@Data
 public class JsonInboundHandler extends SimpleChannelInboundHandler<JsonMsg> {
     private Consumer consumer;
 
@@ -39,4 +41,6 @@ public class JsonInboundHandler extends SimpleChannelInboundHandler<JsonMsg> {
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) {
         consumer.userEventTriggered(ctx, evt);
     }
+
+
 }
