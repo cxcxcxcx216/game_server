@@ -1,6 +1,9 @@
 package com.game.handler;
 
-public abstract class BaseHandler implements Runnable{
+import com.game.msg.ProtoMsg;
+import com.game.net.server.Session;
+
+public abstract class BaseHandler{
 
     //执行逻辑
     public abstract void doAction();
@@ -8,8 +11,4 @@ public abstract class BaseHandler implements Runnable{
     //获取对应的处理器id
     public abstract int getProcessorId();
 
-    @Override
-    public void run() {
-        doAction();
-    }
 }

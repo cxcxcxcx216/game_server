@@ -12,6 +12,7 @@
         <module>game-basic</module>
         <module>game-frame</module>
         <module>game-logic</module>
+        <module>game-gateway</module>
     </modules>
 
     <properties>
