@@ -1,6 +1,6 @@
-package com.game.processor.common;
+package com.game.processor;
 
-import com.game.handler.BaseHandler;
+import com.game.processor.common.IProcessor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;

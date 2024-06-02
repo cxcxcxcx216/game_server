@@ -1,12 +1,12 @@
 package com.game.net.server.consumer;
 
 import com.game.consumer.Consumer;
-import com.game.consumer.Task;
+import com.game.consumer.ProtoMsgTask;
 import com.game.handler.BaseHandler;
 import com.game.handler.HandlerFactory;
 import com.game.msg.ProtoMsg;
 import com.game.processor.common.IProcessor;
-import com.game.processor.common.ProcessorFactory;
+import com.game.processor.ProcessorFactory;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +23,10 @@ public class DefaultConsumer implements Consumer {
         if (handler == null)
             return;
         //封装消息
-        Task task = Task.createTask();
-        task.setMsg(protoMsg);
+        ProtoMsgTask protoMsgTask = ProtoMsgTask.createTask();
+        protoMsgTask.setMsg(protoMsg);
         IProcessor processor = ProcessorFactory.getProcessor(handler.getProcessorId());
-        processor.execute(task);
+        processor.execute(protoMsgTask);
     }
 
     @Override

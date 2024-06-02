@@ -6,7 +6,7 @@ import com.game.msg.ProtoMsg;
 import lombok.Data;
 
 @Data
-public class Task implements Runnable{
+public class ProtoMsgTask implements Runnable{
 
     private ProtoMsg msg;
 
@@ -16,7 +16,7 @@ public class Task implements Runnable{
         handler.doAction();
     }
 
-    public static Task createTask(){
-        return new Task();
+    public static ProtoMsgTask createTask(){
+        return new ProtoMsgTask();
     }
 }

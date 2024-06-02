@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 public class Session {
 
+    private long pid;
+
     private Channel channel;
 
 }

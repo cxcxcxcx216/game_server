@@ -13,6 +13,7 @@
         <module>game-frame</module>
         <module>game-logic</module>
         <module>game-gateway</module>
+        <module>game-client</module>
     </modules>
 
     <properties>
