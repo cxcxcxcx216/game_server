@@ -1,8 +1,10 @@
 package com.game;
 
 import com.game.consumer.JsonMessageConsumer;
+import com.game.handler.HandlerFactory;
 import com.game.net.pipline.JsonPipline;
 import com.game.net.server.BaseServer;
+import com.game.processor.SystemProcessorFactory;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
@@ -24,6 +26,8 @@ public class LogicServer extends BaseServer {
     public static void main(String[] args) {
 
         //创建服务器
+        HandlerFactory.init();//初始化handler
+        SystemProcessorFactory.init();//初始化处理器
         LogicServer server = new LogicServer();
         JsonMessageConsumer consumer = new JsonMessageConsumer();
         JsonPipline pipline = new JsonPipline();
@@ -34,5 +38,6 @@ public class LogicServer extends BaseServer {
         server.setWorkerGroup(new NioEventLoopGroup(1));
         server.setChannelChannelInitializer(pipline);
         server.start();
+
     }
 }

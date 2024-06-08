@@ -20,11 +20,8 @@ public class HandlerFactory {
         return INSTANCE;
     }
 
-    static {
-        init();
-    }
     public static void init(){
-        Set<Class<?>> classes = PackageScanner.scan("com.game", BaseHandler.class);
+        Set<Class<?>> classes = PackageScanner.scan("com.game", Action.class);
         for (Class<?> clazz : classes) {
             Action action = clazz.getAnnotation(Action.class);
             int msgId = action.msgId();
@@ -32,6 +29,7 @@ public class HandlerFactory {
             try {
                 BaseHandler handler = (BaseHandler) clazz.newInstance();
                 HANDLER_MAP.put(msgId, handler);
+                log.info("添加handler = {}",msgId);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
