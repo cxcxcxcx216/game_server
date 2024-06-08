@@ -1,12 +1,11 @@
-package com.game.action;
+package com.game.action.player;
 
 import cn.hutool.core.util.IdUtil;
 import com.game.annotation.Action;
 import com.game.cache.PlayerManager;
 import com.game.entity.Player;
-import com.game.handler.proto.ProtoBaseHandler;
+import com.game.handler.proto.BaseAction;
 import com.game.msg.ProtoMsg;
-import com.game.net.BaseSession;
 import com.game.net.Session;
 import com.game.proto.MsgCode;
 import com.game.proto.ProtoMessage;
@@ -15,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Action(msgId = MsgCode.Code.LoginMessageReq_VALUE)
-public class LoginHandlerProto extends ProtoBaseHandler {
+public class LoginAction extends BaseAction {
     @Override
     public void doAction(Session session, ProtoMsg msg) throws InvalidProtocolBufferException {
 

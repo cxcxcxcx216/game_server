@@ -3,11 +3,10 @@ package com.game.consumer;
 import com.game.cache.SessionManager;
 import com.game.constant.ProcessorId;
 
-import com.game.handler.proto.ProtoBaseHandler;
+import com.game.handler.proto.BaseAction;
 import com.game.handler.proto.ProtoHandlerFactory;
 
 import com.game.msg.ProtoMsg;
-import com.game.net.BaseSession;
 import com.game.net.Session;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.Data;
@@ -19,7 +18,7 @@ public class ProtoMsgTask implements Runnable{
 
     @Override
     public void run() {
-        ProtoBaseHandler handler = ProtoHandlerFactory.getHandler(msg.getCode());
+        BaseAction handler = ProtoHandlerFactory.getHandler(msg.getCode());
         Session session = SessionManager.getInstance().getSession(msg.getBaseSession().getCtx());
 
         try {

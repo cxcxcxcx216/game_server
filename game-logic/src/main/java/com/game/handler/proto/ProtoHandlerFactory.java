@@ -15,7 +15,7 @@ public class ProtoHandlerFactory {
 
     private static final ProtoHandlerFactory INSTANCE = new ProtoHandlerFactory();
 
-    private static final Map<Integer, ProtoBaseHandler> HANDLER_MAP = new HashMap<>();
+    private static final Map<Integer, BaseAction> HANDLER_MAP = new HashMap<>();
 
     public static ProtoHandlerFactory getInstance(){
         return INSTANCE;
@@ -24,11 +24,11 @@ public class ProtoHandlerFactory {
     public static void init(){
         Set<Class<?>> classes = PackageScanner.scan(GameConstant.Pkg.HANDLER_PATH, Action.class);
         for (Class<?> clazz : classes) {
-            if (clazz.getSuperclass().equals(ProtoBaseHandler.class)){
+            if (clazz.getSuperclass().equals(BaseAction.class)){
                 Action action = clazz.getAnnotation(Action.class);
                 int msgId = action.msgId();
                 try {
-                    ProtoBaseHandler handler = (ProtoBaseHandler) clazz.newInstance();
+                    BaseAction handler = (BaseAction) clazz.newInstance();
                     HANDLER_MAP.put(msgId, handler);
                     log.info("添加handler = {}",msgId);
                 } catch (Exception e) {
@@ -38,8 +38,8 @@ public class ProtoHandlerFactory {
         }
     }
 
-    public static ProtoBaseHandler getHandler(int type){
-        ProtoBaseHandler handler = HANDLER_MAP.get(type);
+    public static BaseAction getHandler(int type){
+        BaseAction handler = HANDLER_MAP.get(type);
         if(handler == null){
             log.error("handler is null , type = {}", type);
         }
