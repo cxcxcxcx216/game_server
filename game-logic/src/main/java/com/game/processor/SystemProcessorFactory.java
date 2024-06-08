@@ -2,6 +2,7 @@ package com.game.processor;
 
 import com.game.annotation.Action;
 import com.game.annotation.Processor;
+import com.game.constant.GameConstant;
 import com.game.constant.ProcessorId;
 import com.game.processor.common.IProcessor;
 import com.game.util.PackageScanner;
@@ -21,7 +22,7 @@ public class SystemProcessorFactory {
 
 
     public static void init(){
-        Set<Class<?>> classes = PackageScanner.scan("com.game", Processor.class);
+        Set<Class<?>> classes = PackageScanner.scan(GameConstant.Pkg.PROCESSOR_PATH, Processor.class);
         for (Class<?> clazz : classes) {
             Processor processor = clazz.getAnnotation(Processor.class);
             int processorId = processor.processorId();

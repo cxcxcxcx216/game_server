@@ -1,6 +1,7 @@
 package com.game.handler;
 
 import com.game.annotation.Action;
+import com.game.constant.GameConstant;
 import com.game.util.PackageScanner;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +22,7 @@ public class HandlerFactory {
     }
 
     public static void init(){
-        Set<Class<?>> classes = PackageScanner.scan("com.game", Action.class);
+        Set<Class<?>> classes = PackageScanner.scan(GameConstant.Pkg.HANDLER_PATH, Action.class);
         for (Class<?> clazz : classes) {
             Action action = clazz.getAnnotation(Action.class);
             int msgId = action.msgId();
