@@ -6,6 +6,7 @@ import com.game.msg.ProtoMsg;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class ServerInboundHandler extends SimpleChannelInboundHandler<ProtoMsg> {
 
     private Consumer consumer;

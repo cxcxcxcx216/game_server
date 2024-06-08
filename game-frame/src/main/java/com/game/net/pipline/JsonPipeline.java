@@ -10,7 +10,7 @@ import lombok.Data;
 
 
 @Data
-public class JsonPipline extends ChannelInitializer<SocketChannel> {
+public class JsonPipeline extends ChannelInitializer<SocketChannel> {
 
     private Consumer consumer;
     @Override

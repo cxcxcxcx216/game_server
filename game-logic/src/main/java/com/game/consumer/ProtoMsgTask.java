@@ -1,34 +1,33 @@
 package com.game.consumer;
 
-
 import com.game.cache.PlayerManager;
 import com.game.constant.ProcessorId;
 import com.game.entity.Player;
 import com.game.handler.json.JsonBaseHandler;
 import com.game.handler.json.JsonHandlerFactory;
+import com.game.handler.proto.ProtoBaseHandler;
+import com.game.handler.proto.ProtoHandlerFactory;
 import com.game.msg.JsonMsg;
+import com.game.msg.ProtoMsg;
 import lombok.Data;
 
 @Data
-public class JsonMsgTask implements Runnable{
+public class ProtoMsgTask implements Runnable{
 
-
-    private JsonMsg msg;
+    private ProtoMsg msg;
 
     @Override
     public void run() {
-
-        JsonBaseHandler handler = JsonHandlerFactory.getHandler(msg.getCode());
+        ProtoBaseHandler handler = ProtoHandlerFactory.getHandler(msg.getCode());
         Player player = PlayerManager.getInstance().getPlayerById(msg.getSession().getPid());
         handler.doAction(player,msg);
     }
 
-    public static JsonMsgTask createTask(){
-        return new JsonMsgTask();
+    public static ProtoMsgTask createTask(){
+        return new ProtoMsgTask();
     }
 
     public int getProcessorId(){
         return ProcessorId.SYSTEM_PROCESSOR;
     }
-
 }

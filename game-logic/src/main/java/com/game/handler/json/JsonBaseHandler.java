@@ -1,9 +1,9 @@
-package com.game.handler;
+package com.game.handler.json;
 
 import com.game.entity.Player;
 import com.game.msg.JsonMsg;
 
-public abstract class BaseHandler{
+public abstract class JsonBaseHandler {
 
     //执行逻辑
     public abstract void doAction(Player player, JsonMsg msg);

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+
+option java_multiple_files = false;
+option java_package = "com.game.proto";
+option java_outer_classname = "MsgCode";
+
+enum Code {
+  Default = 0;
+  
+  Login = 10001;
+  
+  Logout = 10002;
+}

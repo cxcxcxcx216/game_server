@@ -1,12 +1,12 @@
-package com.game.handler.action;
+package com.game.action;
 
 import com.game.annotation.Action;
 import com.game.entity.Player;
-import com.game.handler.BaseHandler;
+import com.game.handler.json.JsonBaseHandler;
 import com.game.msg.JsonMsg;
 
 @Action(msgId = 1001)
-public class LoginHandler extends BaseHandler {
+public class LoginHandlerJson extends JsonBaseHandler {
     @Override
     public void doAction(Player player, JsonMsg msg) {
 
