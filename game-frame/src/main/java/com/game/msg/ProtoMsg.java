@@ -1,6 +1,6 @@
 package com.game.msg;
 
-import com.game.net.server.Session;
+import com.game.net.BaseSession;
 import lombok.Data;
 
 @Data
@@ -14,6 +14,6 @@ public class ProtoMsg {
 
     private Object body;
 
-    private Session session;
+    private BaseSession baseSession;
 
 }

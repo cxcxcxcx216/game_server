@@ -1,10 +1,8 @@
 package com.game.msg;
 
-import com.game.constant.ProcessorId;
-import com.game.net.server.Session;
-import lombok.Data;
 
-import javax.annotation.processing.Processor;
+import com.game.net.BaseSession;
+import lombok.Data;
 
 @Data
 public class JsonMsg {
@@ -17,6 +15,6 @@ public class JsonMsg {
 
     private Object body;
 
-    private Session session;
+    private BaseSession session;
 
 }

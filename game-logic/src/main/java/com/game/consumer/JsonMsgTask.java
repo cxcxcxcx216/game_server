@@ -19,7 +19,7 @@ public class JsonMsgTask implements Runnable{
     public void run() {
 
         JsonBaseHandler handler = JsonHandlerFactory.getHandler(msg.getCode());
-        Player player = PlayerManager.getInstance().getPlayerById(msg.getSession().getPid());
+        Player player = PlayerManager.getInstance().getPlayerById(msg.getSession().getId());
         handler.doAction(player,msg);
     }
 

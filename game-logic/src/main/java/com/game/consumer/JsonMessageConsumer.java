@@ -1,14 +1,12 @@
 package com.game.consumer;
 
 import com.alibaba.fastjson.JSON;
-import com.game.cache.PlayerManager;
 import com.game.cache.SessionManager;
 import com.game.constant.GameConstant;
-import com.game.entity.Player;
 import com.game.msg.JsonMsg;
+import com.game.net.BaseSession;
 import com.game.net.Session;
 import com.game.processor.ProcessorFactory;
-import com.game.util.IDUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.Attribute;
@@ -33,12 +31,9 @@ public class JsonMessageConsumer implements Consumer{
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         log.info("服务器收到连接 = {}",ctx.channel().remoteAddress());
-        Player player = new Player();
-        Session session = new Session(IDUtil.generateSnowflakeId(), ctx,System.currentTimeMillis(),player);
-        player.setSession(session);
-        PlayerManager.getInstance().createPlayer(player);
+        Session session = new Session();
         SessionManager.getInstance().addSession(session);
-        Attribute<Session> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
+        Attribute<BaseSession> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
         attr.set(session);
     }
 
@@ -46,7 +41,7 @@ public class JsonMessageConsumer implements Consumer{
     public void channelInactive(ChannelHandlerContext ctx) {
         log.info("ip = {} ,is closed",ctx.channel().remoteAddress());
         SessionManager.getInstance().removeSession(ctx.channel());
-        Attribute<Session> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
+        Attribute<BaseSession> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
         attr.set(null);
         ctx.close();
 

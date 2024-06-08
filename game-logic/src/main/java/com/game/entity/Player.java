@@ -1,19 +1,23 @@
 package com.game.entity;
 
 
+import com.game.net.BaseSession;
 import com.game.net.Session;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 public class Player {
 
-    private Session session;
 
     private long pid;
 
-    private long name;
+    private String name;
 
     private long createTime;
 
+    private long touchTime;
+
+    private Session session;
 
 }

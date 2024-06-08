@@ -8,7 +8,7 @@ option java_outer_classname = "MsgCode";
 enum Code {
   Default = 0;
   
-  Login = 10001;
+  LoginMessageReq = 10001;
   
-  Logout = 10002;
+  LoginMessageRes = 10002;
 }

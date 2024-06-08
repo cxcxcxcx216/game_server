@@ -1,6 +1,7 @@
 package com.game.cache;
 
 import cn.hutool.core.map.CamelCaseLinkedMap;
+import com.game.net.BaseSession;
 import com.game.net.Session;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 public class SessionManager {
 
-    private static final Map<ChannelHandlerContext,Session> SESSION_MAP = new CamelCaseLinkedMap<>();
+    private static final Map<ChannelHandlerContext, Session> SESSION_MAP = new CamelCaseLinkedMap<>();
 
     private static final SessionManager INSTANCE = new SessionManager();
 
@@ -20,7 +21,7 @@ public class SessionManager {
 
 
     public boolean addSession(Session session){
-        Session res = SESSION_MAP.put(session.getCtx(), session);
+        BaseSession res = SESSION_MAP.put(session.getCtx(), session);
         if(res != null){
             return true;
         }
@@ -34,5 +35,10 @@ public class SessionManager {
             return true;
         }
         return false;
+    }
+
+    public Session getSession(ChannelHandlerContext ctx){
+        Session session = SESSION_MAP.getOrDefault(ctx, null);
+        return session;
     }
 }

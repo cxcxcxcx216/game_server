@@ -24,13 +24,13 @@ public final class MsgCode {
      */
     Default(0),
     /**
-     * <code>Login = 10001;</code>
+     * <code>LoginMessageReq = 10001;</code>
      */
-    Login(10001),
+    LoginMessageReq(10001),
     /**
-     * <code>Logout = 10002;</code>
+     * <code>LoginMessageRes = 10002;</code>
      */
-    Logout(10002),
+    LoginMessageRes(10002),
     UNRECOGNIZED(-1),
     ;
 
@@ -39,13 +39,13 @@ public final class MsgCode {
      */
     public static final int Default_VALUE = 0;
     /**
-     * <code>Login = 10001;</code>
+     * <code>LoginMessageReq = 10001;</code>
      */
-    public static final int Login_VALUE = 10001;
+    public static final int LoginMessageReq_VALUE = 10001;
     /**
-     * <code>Logout = 10002;</code>
+     * <code>LoginMessageRes = 10002;</code>
      */
-    public static final int Logout_VALUE = 10002;
+    public static final int LoginMessageRes_VALUE = 10002;
 
 
     public final int getNumber() {
@@ -73,8 +73,8 @@ public final class MsgCode {
     public static Code forNumber(int value) {
       switch (value) {
         case 0: return Default;
-        case 10001: return Login;
-        case 10002: return Logout;
+        case 10001: return LoginMessageReq;
+        case 10002: return LoginMessageRes;
         default: return null;
       }
     }
@@ -140,9 +140,9 @@ public final class MsgCode {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017messageId.proto*,\n\004Code\022\013\n\007Default\020\000\022\n" +
-      "\n\005Login\020\221N\022\013\n\006Logout\020\222NB\033\n\016com.game.prot" +
-      "oB\007MsgCodeP\000b\006proto3"
+      "\n\017messageId.proto*?\n\004Code\022\013\n\007Default\020\000\022\024" +
+      "\n\017LoginMessageReq\020\221N\022\024\n\017LoginMessageRes\020" +
+      "\222NB\033\n\016com.game.protoB\007MsgCodeP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

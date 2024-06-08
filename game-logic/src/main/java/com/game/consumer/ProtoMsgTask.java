@@ -1,14 +1,15 @@
 package com.game.consumer;
 
-import com.game.cache.PlayerManager;
+import com.game.cache.SessionManager;
 import com.game.constant.ProcessorId;
-import com.game.entity.Player;
-import com.game.handler.json.JsonBaseHandler;
-import com.game.handler.json.JsonHandlerFactory;
+
 import com.game.handler.proto.ProtoBaseHandler;
 import com.game.handler.proto.ProtoHandlerFactory;
-import com.game.msg.JsonMsg;
+
 import com.game.msg.ProtoMsg;
+import com.game.net.BaseSession;
+import com.game.net.Session;
+import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.Data;
 
 @Data
@@ -19,8 +20,14 @@ public class ProtoMsgTask implements Runnable{
     @Override
     public void run() {
         ProtoBaseHandler handler = ProtoHandlerFactory.getHandler(msg.getCode());
-        Player player = PlayerManager.getInstance().getPlayerById(msg.getSession().getPid());
-        handler.doAction(player,msg);
+        Session baseSession = (Session)SessionManager.getInstance().getSession(msg.getBaseSession().getCtx());
+
+        try {
+            handler.doAction(baseSession,msg);
+        } catch (InvalidProtocolBufferException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static ProtoMsgTask createTask(){

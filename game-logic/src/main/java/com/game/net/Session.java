@@ -1,23 +1,41 @@
 package com.game.net;
 
-import com.game.entity.Player;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import com.game.entity.Player;
+import com.game.msg.ProtoMsg;
+import com.game.util.BitUtils;
+import io.netty.channel.ChannelHandlerContext;
+import lombok.Builder;
+import lombok.Data;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Session {
-
-    private long id;
-
-    private ChannelHandlerContext ctx;
-
-    private long createTime;
-
+public class Session extends BaseSession{
     private Player player;
+
+    public Session(){
+
+    }
+
+    public Session(Player player) {
+        this.player = player;
+    }
+
+    public Session(long id, ChannelHandlerContext ctx, long createTime, Player player) {
+        super(id, ctx, createTime);
+        this.player = player;
+    }
+
+    public Session(long id, ChannelHandlerContext ctx, long createTime) {
+
+    }
+
+    public void sendMessage(int msgId,byte[] data){
+
+        ProtoMsg protoMsg = new ProtoMsg();
+        protoMsg.setCode(BitUtils.SwapInt16((short) msgId));
+        protoMsg.setData(data);
+        protoMsg.setHead(BitUtils.SwapInt16((short) 0));
+
+        super.getCtx().writeAndFlush(protoMsg);
+    }
 }

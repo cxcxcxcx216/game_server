@@ -1,8 +1,5 @@
 package com.game.handler;
 
-import com.game.msg.ProtoMsg;
-import com.game.net.server.Session;
-
 public abstract class BaseHandler{
 
     //执行逻辑
