@@ -29,8 +29,7 @@ public class LogicServer extends BaseServer {
     public static void main(String[] args) {
 
         //创建服务器
-        JsonHandlerFactory.init();//初始化handler
-        ProtoHandlerFactory.init();
+        ProtoHandlerFactory.init();//初始化handler
         SystemProcessorFactory.init();//初始化处理器
         LogicServer server = new LogicServer();
         ProtoMessageConsumer consumer = new ProtoMessageConsumer();

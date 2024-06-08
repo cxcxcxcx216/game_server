@@ -20,10 +20,10 @@ public class ProtoMsgTask implements Runnable{
     @Override
     public void run() {
         ProtoBaseHandler handler = ProtoHandlerFactory.getHandler(msg.getCode());
-        Session baseSession = (Session)SessionManager.getInstance().getSession(msg.getBaseSession().getCtx());
+        Session session = SessionManager.getInstance().getSession(msg.getBaseSession().getCtx());
 
         try {
-            handler.doAction(baseSession,msg);
+            handler.doAction(session,msg);
         } catch (InvalidProtocolBufferException e) {
             throw new RuntimeException(e);
         }

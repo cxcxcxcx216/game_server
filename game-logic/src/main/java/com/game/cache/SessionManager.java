@@ -21,7 +21,7 @@ public class SessionManager {
 
 
     public boolean addSession(Session session){
-        BaseSession res = SESSION_MAP.put(session.getCtx(), session);
+        Session res = SESSION_MAP.put(session.getCtx(), session);
         if(res != null){
             return true;
         }

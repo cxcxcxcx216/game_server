@@ -32,6 +32,8 @@ public class JsonMessageConsumer implements Consumer{
     public void channelActive(ChannelHandlerContext ctx) {
         log.info("服务器收到连接 = {}",ctx.channel().remoteAddress());
         Session session = new Session();
+        session.setCtx(ctx);
+        session.setCreateTime(System.currentTimeMillis());
         SessionManager.getInstance().addSession(session);
         Attribute<BaseSession> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
         attr.set(session);

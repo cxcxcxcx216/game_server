@@ -1,5 +1,8 @@
 package com.game;
 
+import com.game.handler.ClientProtoHandlerFactory;
+import com.game.msg.ProtoMsg;
+import com.game.proto.MsgCode;
 import com.game.proto.ProtoMessage;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -7,6 +10,8 @@ public class Client {
 
     public static ChannelHandlerContext ctx;
     public static void main(String[] args) throws Exception {
+
+        ClientProtoHandlerFactory.init();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -19,15 +24,17 @@ public class Client {
             }
         }).start();
 
-        Thread.sleep(1000);
+        Thread.sleep(5000);
 
         ProtoMessage.LoginMessageReq.Builder builder = ProtoMessage.LoginMessageReq.newBuilder();
         builder.setName("chencing");
         builder.setPassword("123123");
         ProtoMessage.LoginMessageReq build = builder.build();
-        byte[] bytes = build.toByteArray();
-
-
+        ProtoMsg protoMsg = new ProtoMsg();
+        protoMsg.setHead((short) 0);
+        protoMsg.setCode((short) MsgCode.Code.LoginMessageReq_VALUE);
+        protoMsg.setData(build.toByteArray());
+        ctx.writeAndFlush(protoMsg);
 
     }
 }

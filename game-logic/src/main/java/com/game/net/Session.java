@@ -26,15 +26,17 @@ public class Session extends BaseSession{
     }
 
     public Session(long id, ChannelHandlerContext ctx, long createTime) {
-
+        this.ctx = ctx;
+        this.id = id;
+        this.createTime = createTime;
     }
 
     public void sendMessage(int msgId,byte[] data){
 
         ProtoMsg protoMsg = new ProtoMsg();
-        protoMsg.setCode(BitUtils.SwapInt16((short) msgId));
+        protoMsg.setCode((short) msgId);
         protoMsg.setData(data);
-        protoMsg.setHead(BitUtils.SwapInt16((short) 0));
+        protoMsg.setHead((short) 0);
 
         super.getCtx().writeAndFlush(protoMsg);
     }

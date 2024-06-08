@@ -1,12 +1,9 @@
 package com.game.consumer;
 
 import com.game.Client;
-import com.game.handler.BaseHandler;
-import com.game.handler.HandlerFactory;
 import com.game.handler.ProtoBaseHandler;
-import com.game.handler.ProtoHandlerFactory;
+import com.game.handler.ClientProtoHandlerFactory;
 import com.game.msg.ProtoMsg;
-import com.google.protobuf.InvalidProtocolBufferException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +14,7 @@ public class ClientConsumer implements Consumer{
     public void consume(ChannelHandlerContext ctx, Object msg) {
         log.info("客户端收到消息");
         ProtoMsg protoMsg = (ProtoMsg) msg;
-        ProtoBaseHandler handler = ProtoHandlerFactory.getHandler(protoMsg.getCode());
+        ProtoBaseHandler handler = ClientProtoHandlerFactory.getHandler(protoMsg.getCode());
         try {
             handler.doAction(ctx,protoMsg);
         } catch (Exception e) {

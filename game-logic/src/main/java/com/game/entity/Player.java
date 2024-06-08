@@ -5,8 +5,10 @@ import com.game.net.BaseSession;
 import com.game.net.Session;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class Player {
 
 

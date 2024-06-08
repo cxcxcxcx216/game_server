@@ -11,13 +11,13 @@ import java.util.Set;
 
 
 @Slf4j
-public class ProtoHandlerFactory {
+public class ClientProtoHandlerFactory {
 
-    private static final ProtoHandlerFactory INSTANCE = new ProtoHandlerFactory();
+    private static final ClientProtoHandlerFactory INSTANCE = new ClientProtoHandlerFactory();
 
     private static final Map<Integer, ProtoBaseHandler> HANDLER_MAP = new HashMap<>();
 
-    public static ProtoHandlerFactory getInstance(){
+    public static ClientProtoHandlerFactory getInstance(){
         return INSTANCE;
     }
 

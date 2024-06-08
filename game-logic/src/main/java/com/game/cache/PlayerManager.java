@@ -22,19 +22,18 @@ public class PlayerManager {
 
 
     public boolean createPlayer(Player player){
-        Player result = PLAYER_MAP.put(player.getPid(), player);
-        result.setCreateTime(System.currentTimeMillis());
-        if(result != null){
-            log.info("player create is successful ! player= {}",result);
+        player.setCreateTime(System.currentTimeMillis());
+        PLAYER_MAP.put(player.getPid(), player);
+        if(player != null){
+            log.info("player create is successful ! player= {}",player.getName());
             return true;
         }
-        log.info("player create is fail ! player= {}",result.toString());
+//        log.info("player create is fail ! player= {}",player.toString());
         return false;
     }
 
     public boolean logout(long pid){
         Player result = PLAYER_MAP.remove(pid);
-
         if(result != null){
             log.info("player logout is successful ! player= {}",result);
             return true;

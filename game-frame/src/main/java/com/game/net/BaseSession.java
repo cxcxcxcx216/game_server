@@ -4,11 +4,11 @@ import io.netty.channel.ChannelHandlerContext;
 
 public class BaseSession {
 
-    private long id;
+    protected long id;
 
-    private ChannelHandlerContext ctx;
+    protected ChannelHandlerContext ctx;
 
-    private long createTime;
+    protected long createTime;
 
 
     public BaseSession() {

@@ -9,6 +9,7 @@ import com.game.msg.ProtoMsg;
 import com.game.net.BaseSession;
 import com.game.net.Session;
 import com.game.processor.ProcessorFactory;
+import com.game.processor.SystemProcessorFactory;
 import com.game.util.IDUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -23,14 +24,21 @@ public class ProtoMessageConsumer implements Consumer{
     public void consume(ChannelHandlerContext ctx, Object msg) {
         log.info("服务器收到消息");
         ProtoMsg protoMsg = (ProtoMsg) msg;
+        Attribute<BaseSession> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
+        Session session = (Session)attr.get();
+        if(session == null){
+            log.error("session is null , ip = {}" ,ctx.channel().remoteAddress());
+            return;
+        }
+        protoMsg.setBaseSession(session);
         ProtoMsgTask task = ProtoMsgTask.createTask();
         task.setMsg(protoMsg);
-        ProcessorFactory.getProcessor(task.getProcessorId()).execute(task);
+        SystemProcessorFactory.getProcessor(task.getProcessorId()).execute(task);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        log.info("服务器收到连接 = {}",ctx.channel().remoteAddress());
+        log.info("channelActive服务器收到连接 = {}",ctx.channel().remoteAddress());
         Session session = new Session(IDUtil.generateSnowflakeId(),ctx,System.currentTimeMillis());
         SessionManager.getInstance().addSession(session);
         Attribute<BaseSession> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
