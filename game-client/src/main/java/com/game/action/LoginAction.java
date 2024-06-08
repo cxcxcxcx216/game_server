@@ -23,6 +23,8 @@ public class LoginAction extends ProtoBaseHandler {
             log.info("登录成功",name);
         }
 
+
+
     }
 
     @Override
