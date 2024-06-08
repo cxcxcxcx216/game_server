@@ -25,16 +25,19 @@ public class Client {
         }).start();
 
         Thread.sleep(5000);
+        while (true){
+            Thread.sleep(3);
+            ProtoMessage.LoginMessageReq.Builder builder = ProtoMessage.LoginMessageReq.newBuilder();
+            builder.setName("chencing");
+            builder.setPassword("123123");
+            ProtoMessage.LoginMessageReq build = builder.build();
+            ProtoMsg protoMsg = new ProtoMsg();
+            protoMsg.setHead((short) 0);
+            protoMsg.setCode((short) MsgCode.Code.LoginMessageReq_VALUE);
+            protoMsg.setData(build.toByteArray());
+            ctx.writeAndFlush(protoMsg);
+        }
 
-        ProtoMessage.LoginMessageReq.Builder builder = ProtoMessage.LoginMessageReq.newBuilder();
-        builder.setName("chencing");
-        builder.setPassword("123123");
-        ProtoMessage.LoginMessageReq build = builder.build();
-        ProtoMsg protoMsg = new ProtoMsg();
-        protoMsg.setHead((short) 0);
-        protoMsg.setCode((short) MsgCode.Code.LoginMessageReq_VALUE);
-        protoMsg.setData(build.toByteArray());
-        ctx.writeAndFlush(protoMsg);
 
     }
 }

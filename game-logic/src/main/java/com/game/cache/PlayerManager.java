@@ -24,6 +24,7 @@ public class PlayerManager {
     public boolean createPlayer(Player player){
         player.setCreateTime(System.currentTimeMillis());
         PLAYER_MAP.put(player.getPid(), player);
+        log.error("玩家数量 = {}",PLAYER_MAP.size());
         if(player != null){
             log.info("player create is successful ! player= {}",player.getName());
             return true;
