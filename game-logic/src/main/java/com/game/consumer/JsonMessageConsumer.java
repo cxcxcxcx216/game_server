@@ -3,6 +3,7 @@ package com.game.consumer;
 import com.alibaba.fastjson.JSON;
 import com.game.cache.PlayerManager;
 import com.game.cache.SessionManager;
+import com.game.constant.GameConstant;
 import com.game.entity.Player;
 import com.game.msg.JsonMsg;
 import com.game.net.Session;
@@ -10,6 +11,7 @@ import com.game.processor.ProcessorFactory;
 import com.game.util.IDUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.util.Attribute;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Base64;
@@ -31,18 +33,22 @@ public class JsonMessageConsumer implements Consumer{
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         log.info("服务器收到连接 = {}",ctx.channel().remoteAddress());
-        Session session = new Session(IDUtil.generateSnowflakeId(), ctx.channel());
         Player player = new Player();
+        Session session = new Session(IDUtil.generateSnowflakeId(), ctx,System.currentTimeMillis(),player);
         player.setSession(session);
         PlayerManager.getInstance().createPlayer(player);
         SessionManager.getInstance().addSession(session);
+        Attribute<Session> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
+        attr.set(session);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
         log.info("ip = {} ,is closed",ctx.channel().remoteAddress());
         SessionManager.getInstance().removeSession(ctx.channel());
-        ctx.channel();
+        Attribute<Session> attr = ctx.channel().attr(GameConstant.Net.NETTY_CHANNEL_KEY);
+        attr.set(null);
+        ctx.close();
 
     }
 
@@ -50,7 +56,7 @@ public class JsonMessageConsumer implements Consumer{
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.error("channel is close, reason = {}",cause.toString());
         SessionManager.getInstance().removeSession(ctx.channel());
-        ctx.channel();
+        ctx.close();
     }
 
     @Override
