@@ -32,7 +32,6 @@ public class Session extends BaseSession{
     }
 
     public void sendMessage(int msgId,byte[] data){
-
         ProtoMsg protoMsg = new ProtoMsg();
         protoMsg.setCode((short) msgId);
         protoMsg.setData(data);
