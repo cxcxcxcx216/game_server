@@ -10,6 +10,9 @@ import com.game.net.Session;
 import com.game.proto.MsgCode;
 import com.game.proto.ProtoMessage;
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.MessageLite;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginAction extends BaseAction {
     @Override
     public void doAction(Session session, ProtoMsg msg) throws InvalidProtocolBufferException {
-
         ProtoMessage.LoginMessageReq reqMessage = ProtoMessage.LoginMessageReq.parseFrom(msg.getData());
 
         String name = reqMessage.getName();
@@ -45,8 +47,4 @@ public class LoginAction extends BaseAction {
 
     }
 
-    @Override
-    public int getProcessorId() {
-        return 0;
-    }
 }
