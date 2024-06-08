@@ -1,5 +1,6 @@
 package com.game.net;
 
+import com.game.entity.Player;
 import io.netty.channel.Channel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,4 +15,8 @@ public class Session {
     private long id;
 
     private Channel channel;
+
+    private long createTime;
+
+    private Player player;
 }
