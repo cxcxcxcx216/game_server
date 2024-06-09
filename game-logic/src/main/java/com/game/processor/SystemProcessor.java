@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutorService;
 @Processor(processorId = ProcessorId.SYSTEM_PROCESSOR)
 public class SystemProcessor implements IProcessor {
 
-    private static final ExecutorService executor = ThreadUtil.newExecutor(1,1,100);
+    private static final ExecutorService executor = ThreadUtil.newExecutor(4,8,100);
 
     @Override
     public void execute(Runnable task) {

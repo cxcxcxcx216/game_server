@@ -1,29 +1,168 @@
-<configuration>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--logback配置的根元素。scan=true表示logback将定期扫描配置文件以检测更改。scanPeriod="30 Period" 扫描间隔为30s-->
+<configuration scan="true" scanPeriod="30 seconds">
 
-    <!-- 定义日志输出的格式 -->
-    <conversionRule conversionWord="clr" converterClass="org.slf4j.helpers.MessageFormatter"/>
-    <conversionRule conversionWord="wex" converterClass="org.slf4j.helpers.MessageFormatter"/>
-    <conversionRule conversionWord="wEx" converterClass="org.slf4j.helpers.MessageFormatter"/>
-
-    <!-- 控制台输出配置 -->
+    <!--日志文件的保存路径,首先查找系统属性-Dlog.dir,如果存在就使用其；
+    否则，在当前目录下创建名为/data/logs/sys_admin目录做日志存放的目录 -->
+    <property name="LOG_HOME" value="/data/logs/sys_admin"/>
+    <!-- 日志输出格式 -->
+    <!--格式化输出：%d表示日期，%t表示线程名，%-5level：级别从左显示5个字符宽度
+    %m:日志消息，%n:换行符,%X{traceId}表示记录的traceId
+    %logger表示日志记录事件所在类名，{0}表示只保留类名的第一个元素，即类名的最后一部分
+    %X表示提取MDC中的值，${traceId}是MDC键，表示要提取的值的名称-->
+    <property name="ENCODER_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %X{traceId} %level %logger{0} [%t] %m%n"/>
+    <!-- 控制台输出 :定义了一个控制台输出的Appender，它将日志消息输出到控制台-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${ENCODER_PATTERN}</pattern>
         </encoder>
     </appender>
 
-    <!-- 文件输出配置 -->
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>log/application.log</file> <!-- 指定日志文件路径 -->
+    <!-- INFO日志：按照每天生成日志文件 -->
+    <!--定义一个滚动文件Appender，将INFO日志记录到文件-->
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--表示以追加模式写入日志文件-->
+        <Append>true</Append>
+        <!--指定日志文件的路径和文件名-->
+        <file>${LOG_HOME}/sys_info.log</file>
+        <!--配置基于时间的滚动策略，按日期创建新的日志文件-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--指定日志文件名的模式，以日期为后缀-->
+            <FileNamePattern>${LOG_HOME}/sys_info.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <!--日志输出格式和编码格式-->
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>UTF-8</charset>
         </encoder>
+        <!-- <filter> 元素用于配置日志事件的过滤器，以控制哪些事件会被记录。在您提供的配置中，<filter> 是一个 ch.qos.logback.classic.filter.LevelFilter 过滤器，用于过滤日志事件的级别。-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--指定要接受的日志级别。在这个示例中，INFO 级别的日志事件将被接受，而低于 INFO 级别的事件将被拒绝。-->
+            <level>INFO</level>
+            <!--当日志事件与指定级别匹配时的处理方式。在这里，如果级别匹配到 INFO，则允许该事件通过（ACCEPT）-->
+            <onMatch>ACCEPT</onMatch>
+            <!--当日志事件与指定级别不匹配时的处理方式。在这里，如果级别不匹配 INFO，则拒绝该事件（DENY），即不记录。-->
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
 
-    <!-- 设置日志级别 -->
-    <root level="info">
-        <appender-ref ref="STDOUT" /> <!-- 输出到控制台 -->
-        <appender-ref ref="FILE" /> <!-- 输出到文件 -->
+    <!-- ERROR日志：用于将ERROR日志输出到独立文件 -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Append>true</Append>
+        <file>${LOG_HOME}/sys_error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/sys_error.log.%d{yyyy-MM-dd}
+            </FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- WARN日志：用于将WARN日志输出到独立文件 -->
+    <appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Append>true</Append>
+        <file>${LOG_HOME}/sys_warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/sys_warn.log.%d{yyyy-MM-dd}
+            </FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Append>true</Append>
+        <file>${LOG_HOME}/sys_debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/sys_debug.log.%d{yyyy-MM-dd}
+            </FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="trace" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/data/logs/trace/trace.log</file>
+        <Append>true</Append>
+        <encoder>
+            <!--%msg 表示输出消息文本，%n 表示换行符。这意味着日志事件将只包括消息文本，并在每条日志事件后添加一个换行符。-->
+            <pattern>%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>/data/logs/trace/trace.log.%d{yyyy-MM-dd-HH}</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>1</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--定义了一个名为 async-trace 的异步 Appender，并指定了其类 ch.qos.logback.classic.AsyncAppender。异步 Appender 允许将日志事件放入队列并以异步方式处理它们，这有助于提高性能，特别是在高负载环境中-->
+    <appender name="async-trace" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>80</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>512</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref="trace"/>
+    </appender>
+
+    <!--这个配置为特定类 cn.techwolf.trace.utils.SpanLogger 创建了一个 Logger，指定了记录的日志级别和一个异步 Appender。这允许您单独配置特定类的日志记录行为，包括日志级别和目标 Appender，以满足应用程序的需求。这对于精确控制不同类的日志非常有用。-->
+    <logger name="cn.system.trace.utils.SpanLogger" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="async-trace"/>
+    </logger>
+
+    <logger name="cn.system.jade.datasource.SQLParseInfo" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="WARN_FILE"/>
+    </logger>
+
+    <!-- 日志输出级别  这部分配置定义了根 Logger，即所有日志事件的默认记录方式。 这个配置为根 Logger 指定了默认的日志级别和多个不同的 Appender，以便将日志事件同时记录到不同的目标，例如控制台和文件。这允许您在不同环境中将日志事件发送到不同的目标，以便满足不同的需求，例如在生产环境中将日志记录到文件，而在开发环境中将其输出到控制台。这是 Logback 配置中非常有用的一部分。-->
+
+    <root>
+        <!--这定义了根 Logger 的默认日志级别，即 INFO。这意味着只有 INFO 级别及更高级别的日志事件会被记录，低于 INFO 级别的事件将被忽略。-->
+        <level value="INFO"/>
+        <!--这将根 Logger 的日志事件附加到名为 STDOUT 的 Appender，这意味着根 Logger 的日志事件将被输出到控制台。-->
+        <appender-ref ref="STDOUT"/>
+        <!--Logger 的日志事件附加到不同的 Appender，分别是 INFO_FILE、WARN_FILE、ERROR_FILE 和 DEBUG_FILE。这表示根 Logger 的日志事件将同时记录到多个目标，包括文件日志。-->
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="WARN_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="DEBUG_FILE"/>
     </root>
-
 </configuration>
