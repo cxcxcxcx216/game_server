@@ -4,12 +4,8 @@ syntax = "proto3";
 option java_multiple_files = false;
 option java_package = "com.game.proto";
 option java_outer_classname = "ProtoMessage";
+import "common.proto";
 
-message Player {
-	string name = 1;
-	int32 id = 2;
-	repeated string email = 3;
-}
 
 message LoginMessageReq{
 	string name = 1;
