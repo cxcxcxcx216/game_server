@@ -56,7 +56,6 @@ public class BagStore {
 
 
     public void removeItem(int itemId, int count){
-
         if(!enough(itemId,count)){
             log.error("道具数量不够");
             return;
