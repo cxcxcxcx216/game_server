@@ -2,6 +2,7 @@ package com.game.action.player;
 
 import cn.hutool.core.util.IdUtil;
 import com.game.annotation.Action;
+import com.game.constant.ProcessorId;
 import com.game.manager.PlayerManager;
 import com.game.data.DataCenter;
 import com.game.entity.Bag;
@@ -45,6 +46,11 @@ public class LoginAction extends BaseAction {
         //返回客户端消息
         MsgUtil.sendMsg(player.getPid(),MsgCode.Code.LoginMessageRes_VALUE,builder.build().toByteArray());
 
+    }
+
+    @Override
+    public int getProcessor() {
+        return ProcessorId.SYSTEM_PROCESSOR;
     }
 
 }

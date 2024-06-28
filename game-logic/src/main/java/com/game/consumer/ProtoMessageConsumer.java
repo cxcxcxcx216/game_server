@@ -8,7 +8,9 @@ import com.game.constant.GameConstant;
 import com.game.msg.ProtoMsg;
 import com.game.net.BaseSession;
 import com.game.net.Session;
+import com.game.processor.MsgProcessorFactory;
 import com.game.processor.SystemProcessorFactory;
+import com.game.processor.common.IProcessor;
 import com.game.util.IDUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -32,7 +34,8 @@ public class ProtoMessageConsumer implements Consumer{
         protoMsg.setBaseSession(session);
         ProtoMsgTask task = ProtoMsgTask.createTask();
         task.setMsg(protoMsg);
-        SystemProcessorFactory.getProcessor(task.getProcessorId()).execute(task);
+        IProcessor processor = MsgProcessorFactory.getProcessor(((ProtoMsg) msg).getCode());
+        processor.execute(task);
     }
 
     @Override

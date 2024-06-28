@@ -1,6 +1,7 @@
 package com.game.action.player;
 
 import com.game.annotation.Action;
+import com.game.constant.ProcessorId;
 import com.game.entity.Player;
 import com.game.handler.proto.BaseAction;
 import com.game.manager.PlayerManager;
@@ -24,5 +25,10 @@ public class LogoutAction extends BaseAction {
         ProtoMessage.LogoutMessageRes.Builder builder = ProtoMessage.LogoutMessageRes.newBuilder();
         builder.setResult(logout);
         MsgUtil.sendMsg(player.getPid(),MsgCode.Code.LogoutMessageRes_VALUE,builder.build().toByteArray());
+    }
+
+    @Override
+    public int getProcessor() {
+        return ProcessorId.SYSTEM_PROCESSOR;
     }
 }

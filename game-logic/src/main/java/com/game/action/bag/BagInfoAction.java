@@ -2,6 +2,7 @@ package com.game.action.bag;
 
 
 import com.game.annotation.Action;
+import com.game.constant.ProcessorId;
 import com.game.entity.Player;
 import com.game.handler.proto.BaseAction;
 import com.game.msg.ProtoMsg;
@@ -26,5 +27,10 @@ public class BagInfoAction extends BaseAction {
         }
         ProtoMessage.BagInfoRes.Builder bagInfo = player.getBag().build();
         MsgUtil.sendMsg(player.getPid(),MsgCode.Code.BagInfoMessageRes_VALUE,bagInfo.build().toByteArray());
+    }
+
+    @Override
+    public int getProcessor() {
+        return ProcessorId.SYSTEM_PROCESSOR;
     }
 }

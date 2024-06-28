@@ -9,6 +9,7 @@ import com.game.handler.proto.ProtoHandlerFactory;
 import com.game.net.pipline.JsonPipeline;
 import com.game.net.pipline.ProtoPipeline;
 import com.game.net.server.BaseServer;
+import com.game.processor.MsgProcessorFactory;
 import com.game.processor.SystemProcessorFactory;
 import com.game.task.SystemTask;
 import io.netty.bootstrap.ServerBootstrap;
@@ -33,12 +34,10 @@ public class LogicServer extends BaseServer {
 
         //创建服务器
         ProtoHandlerFactory.init();//初始化handler
+        MsgProcessorFactory.init();
         //链接redis
         RedisFactory.init();
         SystemProcessorFactory.init();//初始化处理器
-
-        //注册心跳事件
-        SystemProcessorFactory.getProcessor(ProcessorId.Heart_PROCESSOR).execute(new SystemTask());
 
         LogicServer server = new LogicServer();
         ProtoMessageConsumer consumer = new ProtoMessageConsumer();

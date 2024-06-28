@@ -9,4 +9,6 @@ public abstract class BaseAction {
     //执行逻辑
     public abstract void doAction(Session session, ProtoMsg msg) throws InvalidProtocolBufferException;
 
+    public abstract int getProcessor();
+
 }

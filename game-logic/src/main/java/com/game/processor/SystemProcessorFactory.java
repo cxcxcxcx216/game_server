@@ -20,6 +20,9 @@ public class SystemProcessorFactory {
 
     private static final Map<Integer,IProcessor> PROCESSOR_MAP = new ConcurrentHashMap<>();
 
+    public static SystemProcessorFactory getInstance(){
+        return INSTANCE;
+    }
 
     public static void init(){
         Set<Class<?>> classes = PackageScanner.scan(GameConstant.Pkg.PROCESSOR_PATH, Processor.class);
