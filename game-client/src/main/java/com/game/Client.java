@@ -26,7 +26,7 @@ public class Client {
 
         Thread.sleep(5000);
         while (true){
-            Thread.sleep(1000);
+            Thread.sleep(1);
             ProtoMessage.LoginMessageReq.Builder builder = ProtoMessage.LoginMessageReq.newBuilder();
             builder.setName("chenxing");
             builder.setPassword("123123");

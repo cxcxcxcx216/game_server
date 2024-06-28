@@ -50,7 +50,7 @@ public class LoginAction extends BaseAction {
 
     @Override
     public int getProcessor() {
-        return ProcessorId.SYSTEM_PROCESSOR;
+        return ProcessorId.PLAYER_PROCESSOR;
     }
 
 }
