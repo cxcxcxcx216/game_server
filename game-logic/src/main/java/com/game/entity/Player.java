@@ -16,4 +16,11 @@ public class Player extends PlayerData{
         player.setBag(new Bag());
         return player;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "bag=" + bag +
+                '}';
+    }
 }

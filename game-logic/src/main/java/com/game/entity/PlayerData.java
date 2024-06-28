@@ -14,4 +14,14 @@ public abstract class PlayerData {
     private long touchTime;
 
     private Session session;
+
+    @Override
+    public String toString() {
+        return "PlayerData{" +
+                "pid=" + pid +
+                ", name='" + name + '\'' +
+                ", createTime=" + createTime +
+                ", touchTime=" + touchTime +
+                '}';
+    }
 }

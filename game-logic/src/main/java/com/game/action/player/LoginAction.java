@@ -3,6 +3,7 @@ package com.game.action.player;
 import cn.hutool.core.util.IdUtil;
 import com.game.annotation.Action;
 import com.game.cache.PlayerManager;
+import com.game.data.DataCenter;
 import com.game.entity.Bag;
 import com.game.entity.Player;
 import com.game.handler.proto.BaseAction;
@@ -28,7 +29,7 @@ public class LoginAction extends BaseAction {
         Bag bag = Bag.create(player);
         player.setBag(bag);
         session.setPlayer(player);
-
+        DataCenter.getInstance().savePlayer(player);
 
         ProtoMessage.LoginMessageRes.Builder builder = ProtoMessage.LoginMessageRes.newBuilder();
         if (PlayerManager.getInstance().createPlayer(player)) {
