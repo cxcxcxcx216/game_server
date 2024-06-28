@@ -1,9 +1,5 @@
 package com.game.entity;
 
-
-import com.game.net.BaseSession;
-import com.game.net.Session;
-import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
@@ -12,6 +8,8 @@ import lombok.ToString;
 public class Player extends PlayerData{
 
     private Bag bag;
+
+    private PlayerActor actor;
 
     public static Player create(){
         Player player = new Player();

@@ -10,6 +10,8 @@ public interface GameConstant {
 
         String HANDLER_PATH = "com.game";
 
+        int HEALTHY = 100;
+
     }
 
     interface Net{

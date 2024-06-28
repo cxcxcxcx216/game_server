@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BuffManager {
     private Map<Integer, Buff> buffs  = new ConcurrentHashMap<>(); // 存储所有 buff 的 Map
-    private Map<Integer, List<Buff>> activeBuffs = new ConcurrentHashMap<>(); // 存储角色当前激活的 buff
+    private Map<Long, List<Buff>> activeBuffs = new ConcurrentHashMap<>(); // 存储角色当前激活的 buff
 
     public BuffManager() {
         buffs = new HashMap<>();
@@ -38,13 +38,13 @@ public class BuffManager {
     }
 
     // 给角色添加一个 buff
-    public void applyBuff(int characterId, Buff buff) {
+    public void applyBuff(long characterId, Buff buff) {
         List<Buff> characterBuffs = activeBuffs.computeIfAbsent(characterId, k -> new ArrayList<>());
         characterBuffs.add(buff);
     }
 
     // 获取角色当前所有的 buff
-    public List<Buff> getActiveBuffs(int characterId) {
+    public List<Buff> getActiveBuffs(long characterId) {
         return activeBuffs.getOrDefault(characterId, Collections.emptyList());
     }
 }

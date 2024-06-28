@@ -1,24 +1,27 @@
-package com.game.system.buffer;
+package com.game.entity;
 
+import com.game.system.buffer.Buff;
+import com.game.system.buffer.BuffManager;
 import lombok.Data;
 
 import java.util.List;
 
 
 @Data
-public class GameCharacter {
+public class PlayerActor {
 
-    private int id;
+    private long id;
     private String name;
     private int health;
-    private int mana;
     private BuffManager buffManager;
 
-    public GameCharacter(int id, String name, int health, int mana) {
+    public PlayerActor() {
+    }
+
+    public PlayerActor(int id, String name, int health, int mana) {
         this.id = id;
         this.name = name;
         this.health = health;
-        this.mana = mana;
         this.buffManager = new BuffManager();
     }
 
@@ -40,5 +43,12 @@ public class GameCharacter {
     // 获取角色当前所有的 buff
     public List<Buff> getActiveBuffs() {
         return buffManager.getActiveBuffs(id);
+    }
+
+    public static PlayerActor create(Player player){
+        PlayerActor actor = new PlayerActor();
+        actor.setName(player.getName());
+        actor.setId(player.getPid());
+        return actor;
     }
 }
