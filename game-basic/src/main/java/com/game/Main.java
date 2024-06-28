@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        cfg.Tables tables = new cfg.Tables(Main::createByteBufFromFile);
+//        cfg.Tables tables = new cfg.Tables(Main::createByteBufFromFile);
         System.out.println("== load succ ==");
     }
 
