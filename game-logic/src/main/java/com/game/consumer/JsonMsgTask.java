@@ -1,7 +1,7 @@
 package com.game.consumer;
 
 
-import com.game.cache.PlayerManager;
+import com.game.manager.PlayerManager;
 import com.game.constant.ProcessorId;
 import com.game.entity.Player;
 import com.game.handler.json.JsonBaseHandler;

@@ -1,7 +1,6 @@
-package com.game.cache;
+package com.game.manager;
 
 import cn.hutool.core.map.CamelCaseLinkedMap;
-import com.game.net.BaseSession;
 import com.game.net.Session;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;

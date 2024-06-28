@@ -2,7 +2,6 @@ package com.game.action.bag;
 
 
 import com.game.annotation.Action;
-import com.game.cache.PlayerManager;
 import com.game.entity.Player;
 import com.game.handler.proto.BaseAction;
 import com.game.msg.ProtoMsg;

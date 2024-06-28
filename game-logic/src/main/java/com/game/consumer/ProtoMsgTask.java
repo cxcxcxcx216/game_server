@@ -1,6 +1,6 @@
 package com.game.consumer;
 
-import com.game.cache.SessionManager;
+import com.game.manager.SessionManager;
 import com.game.constant.ProcessorId;
 
 import com.game.handler.proto.BaseAction;

@@ -1,14 +1,13 @@
 package com.game.consumer;
 
 
-import com.game.cache.SessionManager;
+import com.game.manager.SessionManager;
 import com.game.constant.GameConstant;
 
 
 import com.game.msg.ProtoMsg;
 import com.game.net.BaseSession;
 import com.game.net.Session;
-import com.game.processor.ProcessorFactory;
 import com.game.processor.SystemProcessorFactory;
 import com.game.util.IDUtil;
 import io.netty.channel.ChannelHandlerContext;

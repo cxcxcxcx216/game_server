@@ -1,7 +1,7 @@
 package com.game.consumer;
 
 import com.alibaba.fastjson.JSON;
-import com.game.cache.SessionManager;
+import com.game.manager.SessionManager;
 import com.game.constant.GameConstant;
 import com.game.msg.JsonMsg;
 import com.game.net.BaseSession;

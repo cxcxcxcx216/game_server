@@ -2,7 +2,7 @@ package com.game.action.player;
 
 import cn.hutool.core.util.IdUtil;
 import com.game.annotation.Action;
-import com.game.cache.PlayerManager;
+import com.game.manager.PlayerManager;
 import com.game.data.DataCenter;
 import com.game.entity.Bag;
 import com.game.entity.Player;

@@ -1,4 +1,4 @@
-package com.game.cache;
+package com.game.manager;
 
 
 public class BagManager {

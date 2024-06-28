@@ -1,8 +1,7 @@
 package com.game.utils;
 
-import com.game.cache.PlayerManager;
+import com.game.manager.PlayerManager;
 import com.game.entity.Player;
-import com.game.msg.ProtoMsg;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
