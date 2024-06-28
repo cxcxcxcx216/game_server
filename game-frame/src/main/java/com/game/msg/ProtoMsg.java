@@ -3,6 +3,7 @@ package com.game.msg;
 import com.game.net.BaseSession;
 import lombok.Data;
 
+
 @Data
 public class ProtoMsg {
 
@@ -15,5 +16,6 @@ public class ProtoMsg {
     private Object body;
 
     private BaseSession baseSession;
+
 
 }

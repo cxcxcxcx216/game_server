@@ -2,6 +2,7 @@ package com.game;
 
 import com.game.consumer.JsonMessageConsumer;
 import com.game.consumer.ProtoMessageConsumer;
+import com.game.data.redis.RedisFactory;
 import com.game.handler.json.JsonHandlerFactory;
 import com.game.handler.proto.ProtoHandlerFactory;
 import com.game.net.pipline.JsonPipeline;
@@ -30,6 +31,8 @@ public class LogicServer extends BaseServer {
 
         //创建服务器
         ProtoHandlerFactory.init();//初始化handler
+        //链接redis
+        RedisFactory.init();
         SystemProcessorFactory.init();//初始化处理器
         LogicServer server = new LogicServer();
         ProtoMessageConsumer consumer = new ProtoMessageConsumer();
