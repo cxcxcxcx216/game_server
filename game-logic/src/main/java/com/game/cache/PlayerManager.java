@@ -29,7 +29,6 @@ public class PlayerManager {
             log.info("player create is successful ! player= {}",player.getName());
             return true;
         }
-//        log.info("player create is fail ! player= {}",player.toString());
         return false;
     }
 
