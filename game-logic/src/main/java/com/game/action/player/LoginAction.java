@@ -22,7 +22,7 @@ public class LoginAction extends BaseAction {
         String name = reqMessage.getName();
         String password = reqMessage.getPassword();
 
-        Player player = new Player();
+        Player player = Player.create();
         player.setName(name);
         player.setPid(IdUtil.getSnowflakeNextId());
         player.setSession(session);

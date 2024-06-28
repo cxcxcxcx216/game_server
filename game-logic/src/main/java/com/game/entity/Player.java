@@ -9,17 +9,13 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class Player {
+public class Player extends PlayerData{
 
+    private Bag bag;
 
-    private long pid;
-
-    private String name;
-
-    private long createTime;
-
-    private long touchTime;
-
-    private Session session;
-
+    public static Player create(){
+        Player player = new Player();
+        player.setBag(new Bag());
+        return player;
+    }
 }
