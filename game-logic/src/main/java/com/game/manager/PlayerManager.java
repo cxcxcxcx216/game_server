@@ -46,6 +46,10 @@ public class PlayerManager {
         Player player = PLAYER_MAP.getOrDefault(pid, null);
         return player;
     }
+
+    public Map<Long, Player> getPlayerMap(){
+        return PLAYER_MAP;
+    }
 }
 
 

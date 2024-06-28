@@ -14,7 +14,7 @@ public class HeartProcessor implements IProcessor {
 
     @Override
     public void execute(Runnable task) {
-
+        executor.execute(task);
     }
 
     @Override

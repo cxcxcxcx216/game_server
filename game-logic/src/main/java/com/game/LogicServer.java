@@ -1,5 +1,6 @@
 package com.game;
 
+import com.game.constant.ProcessorId;
 import com.game.consumer.JsonMessageConsumer;
 import com.game.consumer.ProtoMessageConsumer;
 import com.game.data.redis.RedisFactory;
@@ -9,6 +10,7 @@ import com.game.net.pipline.JsonPipeline;
 import com.game.net.pipline.ProtoPipeline;
 import com.game.net.server.BaseServer;
 import com.game.processor.SystemProcessorFactory;
+import com.game.task.SystemTask;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
@@ -34,6 +36,10 @@ public class LogicServer extends BaseServer {
         //链接redis
         RedisFactory.init();
         SystemProcessorFactory.init();//初始化处理器
+
+        //注册心跳事件
+        SystemProcessorFactory.getProcessor(ProcessorId.Heart_PROCESSOR).execute(new SystemTask());
+
         LogicServer server = new LogicServer();
         ProtoMessageConsumer consumer = new ProtoMessageConsumer();
         ProtoPipeline pipline = new ProtoPipeline();
@@ -44,6 +50,8 @@ public class LogicServer extends BaseServer {
         server.setWorkerGroup(new NioEventLoopGroup(1));
         server.setChannelChannelInitializer(pipline);
         server.start();
+
+
 
     }
 }
