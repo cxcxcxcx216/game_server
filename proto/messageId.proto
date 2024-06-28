@@ -11,4 +11,8 @@ enum Code {
   LoginMessageReq = 10001;
   
   LoginMessageRes = 10002;
+
+  BagInfoMessageReq = 10003;
+
+  BagInfoMessageRes = 10004;
 }

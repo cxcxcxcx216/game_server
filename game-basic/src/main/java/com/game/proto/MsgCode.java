@@ -31,6 +31,14 @@ public final class MsgCode {
      * <code>LoginMessageRes = 10002;</code>
      */
     LoginMessageRes(10002),
+    /**
+     * <code>BagInfoMessageReq = 10003;</code>
+     */
+    BagInfoMessageReq(10003),
+    /**
+     * <code>BagInfoMessageRes = 10004;</code>
+     */
+    BagInfoMessageRes(10004),
     UNRECOGNIZED(-1),
     ;
 
@@ -46,6 +54,14 @@ public final class MsgCode {
      * <code>LoginMessageRes = 10002;</code>
      */
     public static final int LoginMessageRes_VALUE = 10002;
+    /**
+     * <code>BagInfoMessageReq = 10003;</code>
+     */
+    public static final int BagInfoMessageReq_VALUE = 10003;
+    /**
+     * <code>BagInfoMessageRes = 10004;</code>
+     */
+    public static final int BagInfoMessageRes_VALUE = 10004;
 
 
     public final int getNumber() {
@@ -75,6 +91,8 @@ public final class MsgCode {
         case 0: return Default;
         case 10001: return LoginMessageReq;
         case 10002: return LoginMessageRes;
+        case 10003: return BagInfoMessageReq;
+        case 10004: return BagInfoMessageRes;
         default: return null;
       }
     }
@@ -140,9 +158,11 @@ public final class MsgCode {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017messageId.proto*?\n\004Code\022\013\n\007Default\020\000\022\024" +
+      "\n\017messageId.proto*o\n\004Code\022\013\n\007Default\020\000\022\024" +
       "\n\017LoginMessageReq\020\221N\022\024\n\017LoginMessageRes\020" +
-      "\222NB\033\n\016com.game.protoB\007MsgCodeP\000b\006proto3"
+      "\222N\022\026\n\021BagInfoMessageReq\020\223N\022\026\n\021BagInfoMes" +
+      "sageRes\020\224NB\033\n\016com.game.protoB\007MsgCodeP\000b" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

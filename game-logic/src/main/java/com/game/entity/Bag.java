@@ -1,6 +1,7 @@
 package com.game.entity;
 
 import com.game.constant.BagActionType;
+import com.game.proto.ProtoMessage;
 import com.game.system.bag.Item;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -151,5 +152,19 @@ public class Bag {
         //todo 初始化背包数据
         bag.setPlayer(player);
         return bag;
+    }
+
+    public ProtoMessage.BagInfoRes.Builder build(){
+        ProtoMessage.BagInfoRes.Builder builder = ProtoMessage.BagInfoRes.newBuilder();
+        for (Map.Entry<Long, Item> entry : itemMap.entrySet()) {
+            Item item = entry.getValue();
+            ProtoMessage.Item.Builder itemBuilder = ProtoMessage.Item.newBuilder();
+            itemBuilder.setItemId(item.getItemId())
+                    .setId(item.getId())
+                    .setCount(item.getCount())
+                    .setTime(item.getTime());
+        }
+
+        return builder;
     }
 }

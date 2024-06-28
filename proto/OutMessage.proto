@@ -6,6 +6,12 @@ option java_package = "com.game.proto";
 option java_outer_classname = "ProtoMessage";
 import "common.proto";
 
+message Item{
+	int64 id = 1;
+	int32 itemId = 2;
+	int64 count = 3;
+	int64 time = 4;
+}
 
 message LoginMessageReq{
 	string name = 1;
@@ -15,4 +21,11 @@ message LoginMessageReq{
 message LoginMessageRes{
 	int32 errorCode =1; 
 	string name = 2;
+}
+
+message BagInfoReq{
+}
+
+message BagInfoRes{
+	repeated Item items = 1;
 }
