@@ -11,6 +11,7 @@ import com.game.msg.ProtoMsg;
 import com.game.net.Session;
 import com.game.proto.MsgCode;
 import com.game.proto.ProtoMessage;
+import com.game.utils.MsgUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,7 +43,7 @@ public class LoginAction extends BaseAction {
             builder.setErrorCode(1001);
         }
         //返回客户端消息
-        session.sendMessage(MsgCode.Code.LoginMessageRes_VALUE,builder.build().toByteArray());
+        MsgUtil.sendMsg(player.getPid(),MsgCode.Code.LoginMessageRes_VALUE,builder.build().toByteArray());
 
     }
 

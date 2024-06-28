@@ -9,6 +9,7 @@ import com.game.msg.ProtoMsg;
 import com.game.net.Session;
 import com.game.proto.MsgCode;
 import com.game.proto.ProtoMessage;
+import com.game.utils.MsgUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +26,6 @@ public class BagInfoAction extends BaseAction {
             return;
         }
         ProtoMessage.BagInfoRes.Builder bagInfo = player.getBag().build();
-        session.sendMessage(MsgCode.Code.BagInfoMessageRes_VALUE,bagInfo.build().toByteArray());
+        MsgUtil.sendMsg(player.getPid(),MsgCode.Code.BagInfoMessageRes_VALUE,bagInfo.build().toByteArray());
     }
 }
