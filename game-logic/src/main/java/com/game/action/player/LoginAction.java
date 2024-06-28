@@ -3,6 +3,7 @@ package com.game.action.player;
 import cn.hutool.core.util.IdUtil;
 import com.game.annotation.Action;
 import com.game.cache.PlayerManager;
+import com.game.entity.Bag;
 import com.game.entity.Player;
 import com.game.handler.proto.BaseAction;
 import com.game.msg.ProtoMsg;
@@ -20,12 +21,12 @@ public class LoginAction extends BaseAction {
         ProtoMessage.LoginMessageReq reqMessage = ProtoMessage.LoginMessageReq.parseFrom(msg.getData());
 
         String name = reqMessage.getName();
-        String password = reqMessage.getPassword();
-
         Player player = Player.create();
         player.setName(name);
         player.setPid(IdUtil.getSnowflakeNextId());
         player.setSession(session);
+        Bag bag = Bag.create(player);
+        player.setBag(bag);
         session.setPlayer(player);
 
 

@@ -1,5 +1,6 @@
 package com.game.entity;
 
+import com.game.constant.BagActionType;
 import com.game.system.bag.Item;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -9,13 +10,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Data
 @Slf4j
 public class Bag {
 
+    private Player player;
     private Map<Long, Item> itemMap = new ConcurrentHashMap<>();
 
 
@@ -24,7 +25,8 @@ public class Bag {
      * @param itemId
      * @param count
      */
-    public void addItem(int itemId, int count){
+    public void addItem(int itemId, int count, BagActionType bagActionType){
+        log.info("playerId  =  {}, bagActionType = {}",player.getPid(),bagActionType);
         List<Item> items = new ArrayList<>();
         itemMap.forEach((id,item)->{
             if (item.getItemId()==itemId) {
@@ -66,8 +68,9 @@ public class Bag {
      * @param itemId
      * @param count
      */
-    public void removeItem(int itemId, int count){
-        if(!enough(itemId,count)){
+    public void removeItem(int itemId, int count, BagActionType bagActionType){
+        log.info("playerId  =  {}, bagActionType = {}",player.getPid(),bagActionType);
+        if(!enough(itemId,count,bagActionType)){
             log.error("道具数量不够");
             return;
         }
@@ -110,8 +113,10 @@ public class Bag {
      * @param count
      * @return
      */
-    public boolean enough(int itemId,int count){
-        long ret = count(itemId);
+    public boolean enough(int itemId,int count, BagActionType bagActionType){
+        log.info("playerId  =  {}, bagActionType = {}",player.getPid(),bagActionType);
+
+        long ret = count(itemId,bagActionType);
         if(ret > count)
             return true;
         return false;
@@ -122,7 +127,9 @@ public class Bag {
      * @param itemId
      * @return
      */
-    public long count(int itemId){
+    public long count(int itemId, BagActionType bagActionType){
+        log.info("playerId  =  {}, bagActionType = {}",player.getPid(),bagActionType);
+
         List<Item> items = new ArrayList<>();
         itemMap.forEach((id,item)->{
             if (item.getItemId()==itemId) {
@@ -137,5 +144,12 @@ public class Bag {
         }
 
         return tem.get();
+    }
+
+    public static Bag create(Player player){
+        Bag bag = new Bag();
+        //todo 初始化背包数据
+        bag.setPlayer(player);
+        return bag;
     }
 }
