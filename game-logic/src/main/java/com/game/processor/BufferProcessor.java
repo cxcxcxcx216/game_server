@@ -1,5 +1,6 @@
 package com.game.processor;
 
+
 import cn.hutool.core.thread.ThreadUtil;
 import com.game.annotation.Processor;
 import com.game.constant.ProcessorId;
@@ -7,12 +8,8 @@ import com.game.processor.common.IProcessor;
 
 import java.util.concurrent.ExecutorService;
 
-/**
- * 默认为单线程处理
- */
-
-@Processor(processorId = ProcessorId.SYSTEM_PROCESSOR)
-public class SystemProcessor implements IProcessor {
+@Processor(processorId = ProcessorId.Buffer_PROCESSOR)
+public class BufferProcessor implements IProcessor {
 
     private static final ExecutorService executor = ThreadUtil.newExecutor(1,1,100);
 
@@ -25,6 +22,4 @@ public class SystemProcessor implements IProcessor {
     public int getProcessorId() {
         return 0;
     }
-
-
 }

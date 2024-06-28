@@ -29,7 +29,13 @@ public class SystemProcessorFactory {
             try {
                 log.info("初始化处理器 = {}",processorId);
                 IProcessor instance =(IProcessor) clazz.newInstance();
-                PROCESSOR_MAP.put(processorId,instance);
+                if (PROCESSOR_MAP.get(processorId) != null) {
+                    log.error("processor = {} 重复注册",processorId);
+                }else {
+                    PROCESSOR_MAP.put(processorId,instance);
+                    log.error("processor = {} 注册成功",processorId);
+                }
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

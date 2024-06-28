@@ -7,7 +7,7 @@ public class BagTest {
 
     public static void main(String[] args) {
         BagStore bagStore = new BagStore();
-        bagStore.addItem(1000,10000);
+        bagStore.addItem(1000,1231011);
 //        bagStore.getItemMap().forEach((id,item)->{
 //            System.out.println(id +"=="  +item.toString());
 //        });
@@ -15,7 +15,7 @@ public class BagTest {
         log.error(bagStore.getItemMap().size()+ "");
 
 
-        bagStore.removeItem(100,100);
+        bagStore.removeItem(100,12310);
 
         bagStore.getItemMap().forEach((id,item)->{
             System.out.println(id +"=="  +item.toString());
