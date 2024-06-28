@@ -29,3 +29,10 @@ message BagInfoReq{
 message BagInfoRes{
 	repeated Item items = 1;
 }
+
+message LogoutMessageReq{
+}
+
+message LogoutMessageRes{
+	bool result = 1;
+}

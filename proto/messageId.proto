@@ -15,4 +15,8 @@ enum Code {
   BagInfoMessageReq = 10003;
 
   BagInfoMessageRes = 10004;
+
+  LogoutMessageReq = 10005;
+
+  LogoutMessageRes = 10006;
 }

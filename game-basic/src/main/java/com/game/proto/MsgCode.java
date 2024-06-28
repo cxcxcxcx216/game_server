@@ -39,6 +39,14 @@ public final class MsgCode {
      * <code>BagInfoMessageRes = 10004;</code>
      */
     BagInfoMessageRes(10004),
+    /**
+     * <code>LogoutMessageReq = 10005;</code>
+     */
+    LogoutMessageReq(10005),
+    /**
+     * <code>LogoutMessageRes = 10006;</code>
+     */
+    LogoutMessageRes(10006),
     UNRECOGNIZED(-1),
     ;
 
@@ -62,6 +70,14 @@ public final class MsgCode {
      * <code>BagInfoMessageRes = 10004;</code>
      */
     public static final int BagInfoMessageRes_VALUE = 10004;
+    /**
+     * <code>LogoutMessageReq = 10005;</code>
+     */
+    public static final int LogoutMessageReq_VALUE = 10005;
+    /**
+     * <code>LogoutMessageRes = 10006;</code>
+     */
+    public static final int LogoutMessageRes_VALUE = 10006;
 
 
     public final int getNumber() {
@@ -93,6 +109,8 @@ public final class MsgCode {
         case 10002: return LoginMessageRes;
         case 10003: return BagInfoMessageReq;
         case 10004: return BagInfoMessageRes;
+        case 10005: return LogoutMessageReq;
+        case 10006: return LogoutMessageRes;
         default: return null;
       }
     }
@@ -158,11 +176,12 @@ public final class MsgCode {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017messageId.proto*o\n\004Code\022\013\n\007Default\020\000\022\024" +
-      "\n\017LoginMessageReq\020\221N\022\024\n\017LoginMessageRes\020" +
-      "\222N\022\026\n\021BagInfoMessageReq\020\223N\022\026\n\021BagInfoMes" +
-      "sageRes\020\224NB\033\n\016com.game.protoB\007MsgCodeP\000b" +
-      "\006proto3"
+      "\n\017messageId.proto*\235\001\n\004Code\022\013\n\007Default\020\000\022" +
+      "\024\n\017LoginMessageReq\020\221N\022\024\n\017LoginMessageRes" +
+      "\020\222N\022\026\n\021BagInfoMessageReq\020\223N\022\026\n\021BagInfoMe" +
+      "ssageRes\020\224N\022\025\n\020LogoutMessageReq\020\225N\022\025\n\020Lo" +
+      "goutMessageRes\020\226NB\033\n\016com.game.protoB\007Msg" +
+      "CodeP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
