@@ -52,5 +52,14 @@ public class SystemProcessorFactory {
         }
         return processor;
     }
+
+    public static void close(){
+        for (Map.Entry<Integer, IProcessor> entry : PROCESSOR_MAP.entrySet()) {
+            log.info("关闭处理器，ProcessorId = {}",entry.getKey());
+            entry.getValue().shoutDown();
+        }
+        PROCESSOR_MAP.clear();
+
+    }
 }
 

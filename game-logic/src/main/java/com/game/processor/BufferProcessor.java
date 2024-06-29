@@ -22,4 +22,9 @@ public class BufferProcessor implements IProcessor {
     public int getProcessorId() {
         return ProcessorId.Buffer_PROCESSOR;
     }
+
+    @Override
+    public void shoutDown() {
+        executor.shutdown();
+    }
 }

@@ -21,6 +21,11 @@ public class HeartProcessor implements IProcessor {
         return ProcessorId.Heart_PROCESSOR;
     }
 
+    @Override
+    public void shoutDown() {
+        executor.shutdown();
+    }
+
     public static void addTask(Runnable task){
         ThreadUtil.schedule(executor,task,10,5, TimeUnit.SECONDS,true);
     }

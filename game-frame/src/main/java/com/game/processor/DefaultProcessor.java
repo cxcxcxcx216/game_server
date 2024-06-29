@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
  */
 public class DefaultProcessor implements IProcessor {
 
-    private static final ExecutorService executor = ThreadUtil.newExecutor(1,1,100);
+    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(16,1024,"DefaultProcessor-",false);
 
     @Override
     public void execute(Runnable task) {
@@ -21,5 +21,10 @@ public class DefaultProcessor implements IProcessor {
     @Override
     public int getProcessorId() {
         return 0;
+    }
+
+    @Override
+    public void shoutDown() {
+        executor.shutdown();
     }
 }

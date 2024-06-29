@@ -27,5 +27,10 @@ public class SystemProcessor implements IProcessor {
         return ProcessorId.SYSTEM_PROCESSOR;
     }
 
+    @Override
+    public void shoutDown() {
+        executor.shutdown();
+    }
+
 
 }

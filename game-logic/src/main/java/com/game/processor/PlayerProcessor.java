@@ -21,4 +21,9 @@ public class PlayerProcessor implements IProcessor {
     public int getProcessorId() {
         return ProcessorId.PLAYER_PROCESSOR;
     }
+
+    @Override
+    public void shoutDown() {
+        executor.shutdown();
+    }
 }

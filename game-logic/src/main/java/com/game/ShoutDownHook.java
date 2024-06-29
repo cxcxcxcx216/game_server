@@ -2,6 +2,7 @@ package com.game;
 
 
 import com.game.data.redis.RedisFactory;
+import com.game.processor.SystemProcessorFactory;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -15,6 +16,8 @@ public class ShoutDownHook {
                 log.info("服务器正在关闭...");
                 // 可以在这里执行资源清理或其他必要的最终操作
                 RedisFactory.shoutDown();//关闭redis数据库链接
+                //关闭线程池
+                SystemProcessorFactory.close();
 
             }
         });

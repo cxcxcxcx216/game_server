@@ -5,4 +5,6 @@ public interface IProcessor {
     void execute(Runnable task);
 
     int getProcessorId();
+
+    void shoutDown();
 }
