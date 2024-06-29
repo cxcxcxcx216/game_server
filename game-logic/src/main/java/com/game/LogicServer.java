@@ -2,6 +2,7 @@ package com.game;
 
 import com.game.consumer.ProtoMessageConsumer;
 import com.game.data.redis.RedisFactory;
+import com.game.event.BufferEvent;
 import com.game.handler.proto.ProtoHandlerFactory;
 import com.game.net.pipline.ProtoPipeline;
 import com.game.net.server.BaseServer;
@@ -34,6 +35,8 @@ public class LogicServer extends BaseServer {
 
         //添心跳检测
         SystemEvent.exe();
+        //buff检测器
+        BufferEvent.exe();
         //链接redis
         RedisFactory.init();
         SystemProcessorFactory.init();//初始化处理器

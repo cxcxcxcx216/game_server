@@ -1,8 +1,11 @@
 package com.game.system.buffer;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Slf4j
 public class BuffManager {
     private static final Map<Integer, Buff> buffs  = new ConcurrentHashMap<>(); // 存储所有 buff 的 Map
     private static final Map<Long, List<Buff>> activeBuffs = new ConcurrentHashMap<>(); // 存储角色当前激活的 buff
@@ -30,6 +33,12 @@ public class BuffManager {
 
     // 检查和更新所有激活中的 buff
     public void updateBuffs() {
+
+        if(activeBuffs.size() == 0){
+            log.info("buff is empty");
+            return;
+        }
+
         for (List<Buff> buffs : activeBuffs.values()) {
             Iterator<Buff> iterator = buffs.iterator();
             while (iterator.hasNext()) {

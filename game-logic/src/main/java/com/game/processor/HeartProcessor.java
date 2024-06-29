@@ -11,6 +11,9 @@ import java.util.concurrent.*;
 public class HeartProcessor implements IProcessor {
     private static final ScheduledThreadPoolExecutor executor = ThreadUtil.createScheduledExecutor(1);
 
+    static {
+        executor.setThreadFactory(ThreadUtil.createThreadFactory("Heart_PROCESSOR-"));
+    }
     @Override
     public void execute(Runnable task) {
         ThreadUtil.schedule(executor,task,10,5, TimeUnit.SECONDS,true);

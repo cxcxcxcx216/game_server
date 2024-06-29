@@ -36,4 +36,9 @@ public class Buff {
         duration -= elapsedSeconds;
         startTime = now;
     }
+
+    //执行buff
+    public void exe(){
+
+    }
 }
