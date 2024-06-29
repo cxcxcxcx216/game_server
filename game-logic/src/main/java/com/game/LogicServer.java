@@ -42,13 +42,13 @@ public class LogicServer extends BaseServer {
         server.setBossGroup(new NioEventLoopGroup(1));
         server.setWorkerGroup(new NioEventLoopGroup(8));
         server.setChannelChannelInitializer(pipline);
-        ShoutDownHook shoutDownHook = new ShoutDownHook();
-        shoutDownHook.attachShutDownHook();
         server.start();
     }
 
     public static void main(String[] args) {
         LogicServer server = new LogicServer();
+        ShoutDownHook shoutDownHook = new ShoutDownHook();
+        shoutDownHook.attachShutDownHook();
         server.run();
     }
 }
