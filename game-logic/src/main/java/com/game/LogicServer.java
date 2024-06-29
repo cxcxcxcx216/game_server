@@ -31,8 +31,7 @@ public class LogicServer extends BaseServer {
     public LogicServer(){
     }
 
-    public static void main(String[] args) {
-
+    public void run(){
         //创建服务器
         ProtoHandlerFactory.init();//初始化handler
         MsgProcessorFactory.init();
@@ -55,7 +54,10 @@ public class LogicServer extends BaseServer {
         ShoutDownHook shoutDownHook = new ShoutDownHook();
         shoutDownHook.attachShutDownHook();
         server.start();
-
-
     }
+
+//    public static void main(String[] args) {
+//        LogicServer server = new LogicServer();
+//        server.run();
+//    }
 }

@@ -10,6 +10,7 @@
         <module name="game-logic" />
         <module name="game-client" />
         <module name="game-gateway" />
+        <module name="springboot-game" />
         <module name="game-frame" />
         <module name="game-basic" />
       </profile>
@@ -17,5 +18,15 @@
     <bytecodeTargetLevel>
       <module name="game-basid" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="game-basic" options="-parameters" />
+      <module name="game-client" options="-parameters" />
+      <module name="game-frame" options="-parameters" />
+      <module name="game-gateway" options="-parameters" />
+      <module name="game-logic" options="-parameters" />
+      <module name="springboot-game" options="-parameters" />
+    </option>
   </component>
 </project>
