@@ -9,22 +9,19 @@ import java.util.concurrent.*;
 
 @Processor(processorId = ProcessorId.Heart_PROCESSOR)
 public class HeartProcessor implements IProcessor {
-
-    private static final ScheduledExecutorService service
-            = Executors.newScheduledThreadPool(1,ThreadUtil.createThreadFactory("Heart_PROCESSOR-"));
-
+    private static final ScheduledThreadPoolExecutor executor = ThreadUtil.createScheduledExecutor(16);
 
     @Override
     public void execute(Runnable task) {
-        service.scheduleAtFixedRate(task,10,1, TimeUnit.SECONDS);
+        ThreadUtil.schedule(executor,task,10,1, TimeUnit.SECONDS,true);
     }
 
     @Override
     public int getProcessorId() {
-        return 0;
+        return ProcessorId.Heart_PROCESSOR;
     }
 
     public static void addTask(Runnable task){
-        service.scheduleAtFixedRate(task,10,1, TimeUnit.SECONDS);
+        ThreadUtil.schedule(executor,task,10,1, TimeUnit.SECONDS,true);
     }
 }

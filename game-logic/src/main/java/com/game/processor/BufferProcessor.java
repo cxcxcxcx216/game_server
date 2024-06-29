@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutorService;
 @Processor(processorId = ProcessorId.Buffer_PROCESSOR)
 public class BufferProcessor implements IProcessor {
 
-    private static final ExecutorService executor = ThreadUtil.newExecutor(1,1,100);
+    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(1,200,"Buffer_PROCESSOR-",false);
 
     @Override
     public void execute(Runnable task) {
