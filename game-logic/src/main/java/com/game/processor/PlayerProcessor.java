@@ -11,7 +11,6 @@ import java.util.concurrent.ExecutorService;
 public class PlayerProcessor implements IProcessor {
     private static final ExecutorService executor = ThreadUtil.newFixedExecutor(8,1024,"PLAYER_PROCESSOR-",false);
 
-
     @Override
     public void execute(Runnable task) {
         executor.execute(task);
