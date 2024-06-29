@@ -10,6 +10,8 @@ public class BaseSession {
 
     protected long createTime;
 
+    protected long checkTime;
+
 
     public BaseSession() {
     }
@@ -42,5 +44,13 @@ public class BaseSession {
 
     public void setCreateTime(long createTime) {
         this.createTime = createTime;
+    }
+
+    public long getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(long checkTime) {
+        this.checkTime = checkTime;
     }
 }

@@ -9,7 +9,6 @@ import com.game.msg.ProtoMsg;
 import com.game.net.BaseSession;
 import com.game.net.Session;
 import com.game.processor.MsgProcessorFactory;
-import com.game.processor.SystemProcessorFactory;
 import com.game.processor.common.IProcessor;
 import com.game.util.IDUtil;
 import io.netty.channel.ChannelHandlerContext;
@@ -31,6 +30,7 @@ public class ProtoMessageConsumer implements Consumer{
             log.error("session is null , ip = {}" ,ctx.channel().remoteAddress());
             return;
         }
+        session.setCheckTime(System.currentTimeMillis());
         protoMsg.setBaseSession(session);
         ProtoMsgTask task = ProtoMsgTask.createTask();
         task.setMsg(protoMsg);

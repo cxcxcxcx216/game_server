@@ -9,6 +9,7 @@ import com.game.handler.proto.ProtoHandlerFactory;
 import com.game.net.pipline.JsonPipeline;
 import com.game.net.pipline.ProtoPipeline;
 import com.game.net.server.BaseServer;
+import com.game.processor.HeartProcessor;
 import com.game.processor.MsgProcessorFactory;
 import com.game.processor.SystemProcessorFactory;
 import com.game.task.SystemTask;
@@ -50,6 +51,10 @@ public class LogicServer extends BaseServer {
         server.setChannelChannelInitializer(pipline);
         ShoutDownHook shoutDownHook = new ShoutDownHook();
         shoutDownHook.attachShutDownHook();
+
+        //添心跳检测
+//        HeartProcessor.addTask(new SystemTask());
+
         server.start();
 
 

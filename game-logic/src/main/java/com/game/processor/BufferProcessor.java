@@ -20,6 +20,6 @@ public class BufferProcessor implements IProcessor {
 
     @Override
     public int getProcessorId() {
-        return 0;
+        return ProcessorId.Buffer_PROCESSOR;
     }
 }

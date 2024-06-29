@@ -39,4 +39,8 @@ public class Session extends BaseSession{
 
         super.getCtx().writeAndFlush(protoMsg);
     }
+
+    public void close(){
+        ctx.close();
+    }
 }
