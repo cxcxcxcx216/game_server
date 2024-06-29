@@ -24,7 +24,7 @@ public class JsonMessageConsumer implements Consumer{
         String string = Base64.getEncoder().encodeToString(jsonMsg.getData());
         jsonMsg.setBody(JSON.parse(string));
         JsonMsgTask task = JsonMsgTask.createTask();
-        task.setMsg(jsonMsg);
+        task.setJsonMsg(jsonMsg);
         ProcessorFactory.getProcessor(task.getProcessorId()).execute(task);
     }
 

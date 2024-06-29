@@ -37,6 +37,7 @@ public class SystemProcessorFactory {
                 }else {
                     PROCESSOR_MAP.put(processorId,instance);
                     log.error("processor = {} 注册成功",processorId);
+                    instance.init();//初始化
                 }
 
             } catch (Exception e) {

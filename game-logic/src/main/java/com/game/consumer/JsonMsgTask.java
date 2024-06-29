@@ -6,21 +6,19 @@ import com.game.constant.ProcessorId;
 import com.game.entity.Player;
 import com.game.handler.json.JsonBaseHandler;
 import com.game.handler.json.JsonHandlerFactory;
-import com.game.msg.JsonMsg;
+import com.game.task.Task;
 import lombok.Data;
 
 @Data
-public class JsonMsgTask implements Runnable{
+public class JsonMsgTask extends Task {
 
-
-    private JsonMsg msg;
 
     @Override
     public void run() {
 
-        JsonBaseHandler handler = JsonHandlerFactory.getHandler(msg.getCode());
-        Player player = PlayerManager.getInstance().getPlayerById(msg.getSession().getId());
-        handler.doAction(player,msg);
+        JsonBaseHandler handler = JsonHandlerFactory.getHandler(jsonMsg.getCode());
+        Player player = PlayerManager.getInstance().getPlayerById(jsonMsg.getSession().getId());
+        handler.doAction(player,jsonMsg);
     }
 
     public static JsonMsgTask createTask(){
