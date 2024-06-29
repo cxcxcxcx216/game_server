@@ -9,7 +9,8 @@ import java.util.concurrent.ExecutorService;
 
 @Processor(processorId = ProcessorId.PLAYER_PROCESSOR)
 public class PlayerProcessor implements IProcessor {
-    private static final ExecutorService executor = ThreadUtil.newExecutor(16,16,100);
+    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(16,"PLAYER_PROCESSOR-",false);
+
 
     @Override
     public void execute(Runnable task) {

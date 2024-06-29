@@ -26,7 +26,7 @@ public class MsgProcessorFactory {
     }
 
     public static void register(int msgId,int processor){
-        MSG_PROCESSOR_MAP.putIfAbsent(msgId,processor);
+        MSG_PROCESSOR_MAP.put(msgId,processor);
     }
 
     public static void init(){

@@ -14,7 +14,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Action(msgId = MsgCode.Code.LoginMessageReq_VALUE)
+@Action(msgId = MsgCode.Code.BagInfoMessageReq_VALUE)
 public class BagInfoAction extends BaseAction {
     @Override
     public void doAction(Session session, ProtoMsg msg) throws InvalidProtocolBufferException {

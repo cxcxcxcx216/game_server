@@ -6,11 +6,12 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class SessionManager {
 
-    private static final Map<ChannelHandlerContext, Session> SESSION_MAP = new CamelCaseLinkedMap<>();
+    private static final Map<ChannelHandlerContext, Session> SESSION_MAP = new ConcurrentHashMap<>();
 
     private static final SessionManager INSTANCE = new SessionManager();
 

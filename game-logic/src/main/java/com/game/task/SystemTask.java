@@ -14,13 +14,6 @@ import java.util.Map;
 public class SystemTask implements Runnable{
     @Override
     public void run() {
-        while (true){
-            //检测在线玩家
-            Map<Long, Player> playerMap = PlayerManager.getInstance().getPlayerMap();
-            for (Map.Entry<Long, Player> entry : playerMap.entrySet()) {
-                log.info("player = {}",entry.getKey());
-            }
-        }
-
+        log.info(PlayerManager.getInstance().getPlayerMap().toString());
     }
 }

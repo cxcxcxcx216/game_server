@@ -36,6 +36,9 @@ public class LogicServer extends BaseServer {
         //创建服务器
         ProtoHandlerFactory.init();//初始化handler
         MsgProcessorFactory.init();
+
+        //添心跳检测
+        HeartProcessor.addTask(new SystemTask());
         //链接redis
         RedisFactory.init();
         SystemProcessorFactory.init();//初始化处理器
@@ -51,10 +54,6 @@ public class LogicServer extends BaseServer {
         server.setChannelChannelInitializer(pipline);
         ShoutDownHook shoutDownHook = new ShoutDownHook();
         shoutDownHook.attachShutDownHook();
-
-        //添心跳检测
-//        HeartProcessor.addTask(new SystemTask());
-
         server.start();
 
 

@@ -6,6 +6,7 @@ import com.game.constant.ProcessorId;
 import com.game.processor.common.IProcessor;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 默认为单线程处理
@@ -14,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 @Processor(processorId = ProcessorId.SYSTEM_PROCESSOR)
 public class SystemProcessor implements IProcessor {
 
-    private static final ExecutorService executor = ThreadUtil.newExecutor(1,1,10);
+    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(16,"SYSTEM_PROCESSOR-",false);
 
     @Override
     public void execute(Runnable task) {
@@ -23,7 +24,7 @@ public class SystemProcessor implements IProcessor {
 
     @Override
     public int getProcessorId() {
-        return 0;
+        return ProcessorId.SYSTEM_PROCESSOR;
     }
 
 
