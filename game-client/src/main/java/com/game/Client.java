@@ -1,5 +1,6 @@
 package com.game;
 
+import cn.hutool.core.thread.ThreadUtil;
 import com.game.handler.ClientProtoHandlerFactory;
 import com.game.msg.ProtoMsg;
 import com.game.proto.MsgCode;
@@ -27,7 +28,7 @@ public class Client {
 
 
         while (true){
-            Thread.sleep(1);
+            ThreadUtil.sleep(1);
             ProtoMessage.LoginMessageReq.Builder builder = ProtoMessage.LoginMessageReq.newBuilder();
             builder.setName("chenxing");
             builder.setPassword("123123");
@@ -37,7 +38,6 @@ public class Client {
             protoMsg.setCode((short) MsgCode.Code.LoginMessageReq_VALUE);
             protoMsg.setData(build.toByteArray());
             ctx.writeAndFlush(protoMsg);
-
 
 
             ProtoMessage.BagInfoReq.Builder builder1 = ProtoMessage.BagInfoReq.newBuilder();

@@ -8,7 +8,7 @@ import com.game.constant.GameConstant;
 import com.game.msg.ProtoMsg;
 import com.game.net.BaseSession;
 import com.game.net.Session;
-import com.game.processor.MsgProcessorFactory;
+import com.game.processor.factory.MsgProcessorFactory;
 import com.game.processor.common.IProcessor;
 import com.game.util.IDUtil;
 import io.netty.channel.ChannelHandlerContext;

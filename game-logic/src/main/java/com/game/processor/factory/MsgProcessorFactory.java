@@ -1,7 +1,6 @@
-package com.game.processor;
+package com.game.processor.factory;
 
 import com.game.annotation.Action;
-import com.game.annotation.Processor;
 import com.game.constant.GameConstant;
 import com.game.handler.proto.BaseAction;
 import com.game.processor.common.IProcessor;

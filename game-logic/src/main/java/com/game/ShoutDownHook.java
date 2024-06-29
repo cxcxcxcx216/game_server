@@ -2,7 +2,7 @@ package com.game;
 
 
 import com.game.data.redis.RedisFactory;
-import com.game.processor.SystemProcessorFactory;
+import com.game.processor.factory.SystemProcessorFactory;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

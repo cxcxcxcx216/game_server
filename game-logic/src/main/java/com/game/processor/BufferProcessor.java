@@ -4,6 +4,8 @@ package com.game.processor;
 import cn.hutool.core.thread.ThreadUtil;
 import com.game.annotation.Processor;
 import com.game.constant.ProcessorId;
+import com.game.event.BufferEvent;
+import com.game.event.SystemEvent;
 import com.game.processor.common.IProcessor;
 import com.game.task.Task;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +34,8 @@ public class BufferProcessor implements IProcessor {
     @Override
     public void init() {
         log.info("buff检测线程初始化...");
+        //buff检测器
+        BufferEvent.exe();
     }
 
     @Override

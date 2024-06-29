@@ -1,14 +1,11 @@
-package com.game.processor;
+package com.game.processor.factory;
 
-import com.game.annotation.Action;
 import com.game.annotation.Processor;
 import com.game.constant.GameConstant;
-import com.game.constant.ProcessorId;
 import com.game.processor.common.IProcessor;
 import com.game.util.PackageScanner;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;

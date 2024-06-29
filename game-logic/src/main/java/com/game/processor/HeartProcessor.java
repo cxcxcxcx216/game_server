@@ -3,6 +3,8 @@ package com.game.processor;
 import cn.hutool.core.thread.ThreadUtil;
 import com.game.annotation.Processor;
 import com.game.constant.ProcessorId;
+import com.game.event.BufferEvent;
+import com.game.event.SystemEvent;
 import com.game.processor.common.IProcessor;
 import com.game.task.Task;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +32,8 @@ public class HeartProcessor implements IProcessor {
     @Override
     public void init() {
         log.info("心跳检测线程初始化...");
+        //添心跳检测
+        SystemEvent.exe();
     }
 
     @Override
