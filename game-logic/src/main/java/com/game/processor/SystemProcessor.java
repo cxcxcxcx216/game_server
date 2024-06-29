@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Processor(processorId = ProcessorId.SYSTEM_PROCESSOR)
 public class SystemProcessor implements IProcessor {
 
-    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(16,1024,"SYSTEM_PROCESSOR-",false);
+    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(8,1024,"SYSTEM_PROCESSOR-",false);
 
     @Override
     public void execute(Runnable task) {

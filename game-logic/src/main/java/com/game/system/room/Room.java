@@ -20,6 +20,9 @@ public class Room {
 
     private Set<Player> players = new HashSet<>();
 
+    private Queue<Player> waitingPlayers;
+
+
     public static  Room create(Player player){
         log.info("create room");
         Room room = new Room();

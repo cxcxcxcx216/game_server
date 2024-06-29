@@ -4,13 +4,18 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BuffManager {
-    private Map<Integer, Buff> buffs  = new ConcurrentHashMap<>(); // 存储所有 buff 的 Map
-    private Map<Long, List<Buff>> activeBuffs = new ConcurrentHashMap<>(); // 存储角色当前激活的 buff
+    private static final Map<Integer, Buff> buffs  = new ConcurrentHashMap<>(); // 存储所有 buff 的 Map
+    private static final Map<Long, List<Buff>> activeBuffs = new ConcurrentHashMap<>(); // 存储角色当前激活的 buff
 
-    public BuffManager() {
-        buffs = new HashMap<>();
-        activeBuffs = new HashMap<>();
+    private static final BuffManager INSTANCE  = new BuffManager();
+
+    private BuffManager() {
     }
+    
+    public static BuffManager getInstance(){
+        return INSTANCE;
+    }
+
 
     // 添加一个 buff 到管理器中
     public void addBuff(Buff buff) {
@@ -44,7 +49,7 @@ public class BuffManager {
     }
 
     // 获取角色当前所有的 buff
-    public List<Buff> getActiveBuffs(long characterId) {
-        return activeBuffs.getOrDefault(characterId, Collections.emptyList());
+    public List<Buff> getActiveBuffs(long pid) {
+        return activeBuffs.getOrDefault(pid, Collections.emptyList());
     }
 }

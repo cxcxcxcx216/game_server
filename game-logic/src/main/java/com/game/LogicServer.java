@@ -1,18 +1,14 @@
 package com.game;
 
-import com.game.constant.ProcessorId;
-import com.game.consumer.JsonMessageConsumer;
 import com.game.consumer.ProtoMessageConsumer;
 import com.game.data.redis.RedisFactory;
-import com.game.handler.json.JsonHandlerFactory;
 import com.game.handler.proto.ProtoHandlerFactory;
-import com.game.net.pipline.JsonPipeline;
 import com.game.net.pipline.ProtoPipeline;
 import com.game.net.server.BaseServer;
 import com.game.processor.HeartProcessor;
 import com.game.processor.MsgProcessorFactory;
 import com.game.processor.SystemProcessorFactory;
-import com.game.task.SystemTask;
+import com.game.event.SystemEvent;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
@@ -37,7 +33,7 @@ public class LogicServer extends BaseServer {
         MsgProcessorFactory.init();
 
         //添心跳检测
-        HeartProcessor.addTask(new SystemTask());
+        SystemEvent.exe();
         //链接redis
         RedisFactory.init();
         SystemProcessorFactory.init();//初始化处理器
@@ -56,8 +52,8 @@ public class LogicServer extends BaseServer {
         server.start();
     }
 
-//    public static void main(String[] args) {
-//        LogicServer server = new LogicServer();
-//        server.run();
-//    }
+    public static void main(String[] args) {
+        LogicServer server = new LogicServer();
+        server.run();
+    }
 }

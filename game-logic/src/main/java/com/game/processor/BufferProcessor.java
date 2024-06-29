@@ -7,6 +7,7 @@ import com.game.constant.ProcessorId;
 import com.game.processor.common.IProcessor;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Processor(processorId = ProcessorId.Buffer_PROCESSOR)
 public class BufferProcessor implements IProcessor {
@@ -27,4 +28,10 @@ public class BufferProcessor implements IProcessor {
     public void shoutDown() {
         executor.shutdown();
     }
+
+    public static void addTask(Runnable task){
+        executor.execute(task);
+    }
+
+
 }
