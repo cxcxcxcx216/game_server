@@ -53,6 +53,11 @@ public class BaseServer {
         }
     }
 
+    public void close(){
+        bossGroup.shutdownGracefully();
+        workerGroup.shutdownGracefully();
+    }
+
     /**
      * 通过默认设置启动
      */
