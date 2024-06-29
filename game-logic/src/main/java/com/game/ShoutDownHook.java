@@ -18,6 +18,7 @@ public class ShoutDownHook {
                 RedisFactory.shoutDown();//关闭redis数据库链接
                 //关闭线程池
                 SystemProcessorFactory.close();
+                //保存所有玩家数据
 
             }
         });
