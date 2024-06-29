@@ -2,6 +2,7 @@ package com.game.action.player;
 
 import cn.hutool.core.util.IdUtil;
 import com.game.annotation.Action;
+import com.game.constant.BagActionType;
 import com.game.constant.ProcessorId;
 import com.game.manager.PlayerManager;
 import com.game.entity.Bag;
@@ -28,6 +29,9 @@ public class LoginAction extends BaseAction {
         player.setPid(IdUtil.getSnowflakeNextId());
         player.setSession(session);
         Bag bag = Bag.create(player);
+
+        bag.addItem(1001,271, BagActionType.GM);
+
         player.setBag(bag);
         session.setPlayer(player);
 //        DataCenter.getInstance().savePlayer(player);

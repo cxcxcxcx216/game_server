@@ -19,7 +19,7 @@ public class SystemEvent implements IEvent{
         if (PlayerManager.getInstance().getPlayerMap() != null) {
             log.info("玩家数量={}",PlayerManager.getInstance().getPlayerMap().size());
             for (Map.Entry<Long, Player> entry : PlayerManager.getInstance().getPlayerMap().entrySet()) {
-                log.info("pid = {}",entry.getValue().getPid());
+//                log.info("pid = {}",entry.getValue().getPid());
             }
         }
     }

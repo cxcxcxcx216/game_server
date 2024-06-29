@@ -15,7 +15,10 @@ public class BagInfoAction extends ProtoBaseHandler {
     @Override
     public void doAction(ChannelHandlerContext ctx, ProtoMsg msg) throws InvalidProtocolBufferException {
         ProtoMessage.BagInfoRes messageRes = ProtoMessage.BagInfoRes.parseFrom(msg.getData());
-        log.info("服务器返回背包信息！bag = {}",messageRes.getItemsList());
+        for (ProtoMessage.Item item : messageRes.getItemsList()) {
+            log.info("id = {},itemId = {},count = {},time = {}",item.getId(),item.getItemId(),item.getCount(),item.getTime());
+        }
+
     }
 
     @Override

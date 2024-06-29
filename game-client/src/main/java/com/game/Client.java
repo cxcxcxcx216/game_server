@@ -39,7 +39,7 @@ public class Client {
             ctx.writeAndFlush(protoMsg);
 
 
-            Thread.sleep(1);
+
             ProtoMessage.BagInfoReq.Builder builder1 = ProtoMessage.BagInfoReq.newBuilder();
             ProtoMessage.BagInfoReq build1 = builder1.build();
             ProtoMsg protoMsg1 = new ProtoMsg();
