@@ -35,19 +35,19 @@ public class Client {
         protoMsg.setData(build.toByteArray());
         ctx.writeAndFlush(protoMsg);
 
-        while (true){
-
-
-
-            Thread.sleep(50);
-            ProtoMessage.BagInfoReq.Builder builder1 = ProtoMessage.BagInfoReq.newBuilder();
-            ProtoMessage.BagInfoReq build1 = builder1.build();
-            ProtoMsg protoMsg1 = new ProtoMsg();
-            protoMsg1.setHead((short) 0);
-            protoMsg1.setCode((short) MsgCode.Code.BagInfoMessageReq_VALUE);
-            protoMsg1.setData(build1.toByteArray());
-            ctx.writeAndFlush(protoMsg1);
-        }
+//        while (true){
+//
+//
+//
+//            Thread.sleep(50);
+//            ProtoMessage.BagInfoReq.Builder builder1 = ProtoMessage.BagInfoReq.newBuilder();
+//            ProtoMessage.BagInfoReq build1 = builder1.build();
+//            ProtoMsg protoMsg1 = new ProtoMsg();
+//            protoMsg1.setHead((short) 0);
+//            protoMsg1.setCode((short) MsgCode.Code.BagInfoMessageReq_VALUE);
+//            protoMsg1.setData(build1.toByteArray());
+//            ctx.writeAndFlush(protoMsg1);
+//        }
 
 
     }
