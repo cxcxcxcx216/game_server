@@ -13,14 +13,11 @@ import java.util.concurrent.ExecutorService;
 @Slf4j
 @Processor(processorId = ProcessorId.PLAYER_PROCESSOR)
 public class PlayerProcessor implements IProcessor {
-
-
     private static final List<ExecutorService> threadList =  new ArrayList<>();
     @Override
     public void execute(Task task) {
-
-        int l = (int)task.getMsg().getBaseSession().getId() % threadList.size();
-        threadList.get(l).execute(task);
+        int index = (int)task.getMsg().getBaseSession().getId() % threadList.size();
+        threadList.get(index).execute(task);
     }
 
     @Override
