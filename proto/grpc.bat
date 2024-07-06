@@ -1,0 +1,1 @@
+protoc --plugin=protoc-gen-grpc-java=<path-to-plugin>/protoc-gen-grpc-java --java_out=<F:\360MoveData\Users\asus\Desktop\game_server\game-basic\src\main\java> --grpc-java_out=<F:\360MoveData\Users\asus\Desktop\game_server\game-basic\src\main\java> hello.proto

@@ -4104,20 +4104,19 @@ public final class ProtoMessage {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020OutMessage.proto\032\014common.proto\"?\n\004Item" +
-      "\022\n\n\002id\030\001 \001(\003\022\016\n\006itemId\030\002 \001(\005\022\r\n\005count\030\003 " +
-      "\001(\003\022\014\n\004time\030\004 \001(\003\"1\n\017LoginMessageReq\022\014\n\004" +
-      "name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"2\n\017LoginMes" +
-      "sageRes\022\021\n\terrorCode\030\001 \001(\005\022\014\n\004name\030\002 \001(\t" +
-      "\"\014\n\nBagInfoReq\"\"\n\nBagInfoRes\022\024\n\005items\030\001 " +
-      "\003(\0132\005.Item\"\022\n\020LogoutMessageReq\"\"\n\020Logout" +
-      "MessageRes\022\016\n\006result\030\001 \001(\010B \n\016com.game.p" +
-      "rotoB\014ProtoMessageP\000b\006proto3"
+      "\n\020OutMessage.proto\"?\n\004Item\022\n\n\002id\030\001 \001(\003\022\016" +
+      "\n\006itemId\030\002 \001(\005\022\r\n\005count\030\003 \001(\003\022\014\n\004time\030\004 " +
+      "\001(\003\"1\n\017LoginMessageReq\022\014\n\004name\030\001 \001(\t\022\020\n\010" +
+      "password\030\002 \001(\t\"2\n\017LoginMessageRes\022\021\n\terr" +
+      "orCode\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"\014\n\nBagInfoReq" +
+      "\"\"\n\nBagInfoRes\022\024\n\005items\030\001 \003(\0132\005.Item\"\022\n\020" +
+      "LogoutMessageReq\"\"\n\020LogoutMessageRes\022\016\n\006" +
+      "result\030\001 \001(\010B \n\016com.game.protoB\014ProtoMes" +
+      "sageP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.game.proto.ProtoMessage.getDescriptor(),
         });
     internal_static_Item_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -4161,7 +4160,6 @@ public final class ProtoMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LogoutMessageRes_descriptor,
         new java.lang.String[] { "Result", });
-    com.game.proto.ProtoMessage.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
