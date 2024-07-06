@@ -1,11 +1,10 @@
-package com.game;
+package com.game.grpc;
 
 import com.game.proto.Hello;
 import com.game.proto.HelloServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class HelloClient {

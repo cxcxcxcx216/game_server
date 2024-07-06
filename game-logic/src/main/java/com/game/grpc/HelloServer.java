@@ -1,4 +1,4 @@
-package com.game;
+package com.game.grpc;
 
 import com.game.service.HelloServiceImpl;
 import io.grpc.Server;
