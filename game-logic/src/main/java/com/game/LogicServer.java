@@ -1,8 +1,10 @@
 package com.game;
 
+import com.game.constant.GameConstant;
 import com.game.consumer.ProtoMessageConsumer;
 import com.game.data.redis.RedisFactory;
 import com.game.handler.proto.ProtoHandlerFactory;
+import com.game.listener.EventUtil;
 import com.game.net.pipline.ProtoPipeline;
 import com.game.net.server.BaseServer;
 import com.game.processor.factory.MsgProcessorFactory;
@@ -33,6 +35,10 @@ public class LogicServer extends BaseServer {
         RedisFactory.init();
         SystemProcessorFactory.init();//初始化处理器
 
+
+        EventUtil.init(GameConstant.Pkg.LISTENER_PATH);//注册监听器
+
+        EventUtil.fire(GameConstant.Listener.DATA_BASE,new Object());
         LogicServer server = new LogicServer();
         ProtoMessageConsumer consumer = new ProtoMessageConsumer();
         ProtoPipeline pipline = new ProtoPipeline();
