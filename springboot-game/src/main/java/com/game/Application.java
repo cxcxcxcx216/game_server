@@ -8,10 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
     public static void main(String[] args) {
-
-        ShoutDownHook shoutDownHook = new ShoutDownHook();
-        shoutDownHook.attachShutDownHook();
-
-        SpringApplication.run(Application.class,args);
+        SpringApplication app = new SpringApplication(Main.class);
+        app.addListeners(new ApplicationReadyEventListener());
+        app.run(args);
     }
 }
