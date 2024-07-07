@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/game-basic/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/game-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/game-fight/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/game-frame/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/game-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/game-logic/src/main/java" charset="UTF-8" />

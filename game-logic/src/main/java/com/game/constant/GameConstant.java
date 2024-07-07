@@ -6,11 +6,11 @@ import io.netty.util.AttributeKey;
 public interface GameConstant {
 
     interface Pkg{
-        String PROCESSOR_PATH = "com.game";
+        String PROCESSOR_PATH = "com.game.processor";
 
-        String HANDLER_PATH = "com.game";
+        String HANDLER_PATH = "com.game.action";
 
-        String LISTENER_PATH = "com.game";
+        String LISTENER_PATH = "com.game.listener";
 
 
 

@@ -15,6 +15,7 @@
         <module>game-gateway</module>
         <module>game-client</module>
         <module>springboot-game</module>
+        <module>game-fight</module>
     </modules>
 
 

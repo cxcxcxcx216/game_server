@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Config {
 
-    @Bean
+//    @Bean
     public LogicServer logicServer() {
         LogicServer server = new LogicServer();
         server.run();

@@ -8,9 +8,9 @@ public class ApplicationReadyEventListener implements ApplicationListener<Applic
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        ConfigurableApplicationContext context = event.getApplicationContext();
-        ShoutDownHook shoutDownHook = new ShoutDownHook();
-        shoutDownHook.attachShutDownHook();
+//        ConfigurableApplicationContext context = event.getApplicationContext();
+//        ShoutDownHook shoutDownHook = new ShoutDownHook();
+//        shoutDownHook.attachShutDownHook();
     }
 }
 
