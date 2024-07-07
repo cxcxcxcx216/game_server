@@ -2,6 +2,7 @@ package com.game;
 
 import com.game.constant.GameConstant;
 import com.game.consumer.ProtoMessageConsumer;
+import com.game.data.mongo.MongoDBFactory;
 import com.game.data.redis.RedisFactory;
 import com.game.handler.proto.ProtoHandlerFactory;
 import com.game.listener.EventUtil;
@@ -33,6 +34,9 @@ public class LogicServer extends BaseServer {
         MsgProcessorFactory.init();
         //链接redis
         RedisFactory.init();
+
+//        MongoDBFactory.init();//初始化mongoDB数据库
+
         SystemProcessorFactory.init();//初始化处理器
 
 
