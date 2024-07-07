@@ -34,7 +34,6 @@ public class LoginAction extends BaseAction {
 
         player.setBag(bag);
         session.setPlayer(player);
-//        DataCenter.getInstance().savePlayer(player);
 
         ProtoMessage.LoginMessageRes.Builder builder = ProtoMessage.LoginMessageRes.newBuilder();
         if (PlayerManager.getInstance().createPlayer(player)) {

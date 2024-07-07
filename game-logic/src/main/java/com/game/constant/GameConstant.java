@@ -12,7 +12,6 @@ public interface GameConstant {
 
         String LISTENER_PATH = "com.game";
 
-        int HEALTHY = 100;
 
 
 
