@@ -33,7 +33,7 @@ public class LogicServer extends BaseServer {
         ProtoHandlerFactory.init();//初始化handler
         MsgProcessorFactory.init();
         //链接redis
-        RedisFactory.init();
+//        RedisFactory.init();
 
 //        MongoDBFactory.init();//初始化mongoDB数据库
 
