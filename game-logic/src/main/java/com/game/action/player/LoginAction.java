@@ -3,7 +3,10 @@ package com.game.action.player;
 import cn.hutool.core.util.IdUtil;
 import com.game.annotation.Action;
 import com.game.constant.BagActionType;
+import com.game.constant.GameConstant;
 import com.game.constant.ProcessorId;
+import com.game.data.DataCenter;
+import com.game.listener.EventUtil;
 import com.game.manager.PlayerManager;
 import com.game.entity.Bag;
 import com.game.entity.Player;
@@ -33,8 +36,9 @@ public class LoginAction extends BaseAction {
         bag.addItem(1001,271, BagActionType.GM);
 
         player.setBag(bag);
+        bag.setPid(player.getPid());
         session.setPlayer(player);
-
+        EventUtil.fire(GameConstant.Listener.DATA_BASE,player);
         ProtoMessage.LoginMessageRes.Builder builder = ProtoMessage.LoginMessageRes.newBuilder();
         if (PlayerManager.getInstance().createPlayer(player)) {
             log.info("账号登录成功");

@@ -29,8 +29,8 @@ public class PlayerProcessor implements IProcessor {
     public void init() {
         log.info("threadList size = {}",threadList.size());
         if(threadList.size() == 0){
-            for (int i = 0; i < 7; i++) {
-                ExecutorService executor = ThreadUtil.newFixedExecutor(1,1024,"PLAYER_PROCESSOR-"+i,false);
+            for (int i = 0; i < 1; i++) {
+                ExecutorService executor = ThreadUtil.newFixedExecutor(1,1024*1024,"PLAYER_PROCESSOR-"+i,false);
                 log.info("添加玩家处理线程，thread = {}",executor.isShutdown());
                 threadList.add(i,executor);
             }

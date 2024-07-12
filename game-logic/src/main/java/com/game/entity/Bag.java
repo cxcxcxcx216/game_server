@@ -1,6 +1,9 @@
 package com.game.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.game.constant.BagActionType;
+import com.game.constant.GameConstant;
+import com.game.listener.EventUtil;
 import com.game.proto.ProtoMessage;
 import com.game.system.bag.Item;
 import lombok.Data;
@@ -17,7 +20,14 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 public class Bag {
 
+    @JSONField(serialize = false)
     private Player player;
+
+
+    @JSONField(name = "pid")
+    private long pid;
+
+    @JSONField(name = "itemMap")
     private Map<Long, Item> itemMap = new ConcurrentHashMap<>();
 
 
@@ -61,6 +71,8 @@ public class Bag {
             }
 
         }
+        this.getPlayer().setTouchTime(System.currentTimeMillis());
+        EventUtil.fire(GameConstant.Listener.DATA_BASE,player);
     }
 
 
@@ -105,6 +117,8 @@ public class Bag {
                 this.itemMap.remove(item.getId());
             }
         }
+        this.getPlayer().setTouchTime(System.currentTimeMillis());
+        EventUtil.fire(GameConstant.Listener.DATA_BASE,player);
 
     }
 

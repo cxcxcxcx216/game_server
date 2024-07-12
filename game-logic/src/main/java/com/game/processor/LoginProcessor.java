@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 @Processor(processorId = ProcessorId.SYSTEM_PROCESSOR)
 public class LoginProcessor implements IProcessor {
 
-    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(8,1024,"SYSTEM_PROCESSOR-",false);
+    private static final ExecutorService executor = ThreadUtil.newFixedExecutor(1,1024*1024,"SYSTEM_PROCESSOR-",false);
 
     @Override
     public void execute(Task task) {
