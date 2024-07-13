@@ -1,5 +1,6 @@
 package com.game.listener;
 
+import cn.hutool.core.thread.ThreadUtil;
 import com.game.annotation.Listener;
 import com.game.util.PackageScanner;
 import lombok.extern.slf4j.Slf4j;
@@ -7,22 +8,31 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Slf4j
 public class EventUtil {
 
     private final static Map<Integer, List<IListener>> LISTENER_MAP = new ConcurrentHashMap<>();
 
+    //创建一个执行事件的线程池
+    private static final ExecutorService eventDriver = ThreadUtil.newFixedExecutor(1,1024*2014,"event-driver-",false);
+
     public static void fire(int type,Object param){
-        List<IListener> listeners = LISTENER_MAP.getOrDefault(type, null);
-        if(listeners == null || listeners.size() == 0){
-            log.error("lister is empty, listener = {}",type);
-            return;
-        }else {
-            for (IListener listener : listeners) {
-                listener.update(param);
+
+        eventDriver.execute(()->{
+            List<IListener> listeners = LISTENER_MAP.getOrDefault(type, null);
+            if(listeners == null || listeners.size() == 0){
+                log.error("lister is empty, listener = {}",type);
+                return;
+            }else {
+                for (IListener listener : listeners) {
+                    listener.update(param);
+                }
             }
-        }
+        });
+
 
     }
 

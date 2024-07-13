@@ -24,11 +24,10 @@ public class Client {
                 }
             }
         }).start();
+
         Thread.sleep(5000);
 
-
         while (true){
-            ThreadUtil.sleep(1);
             ProtoMessage.LoginMessageReq.Builder builder = ProtoMessage.LoginMessageReq.newBuilder();
             builder.setName("chenxing");
             builder.setPassword("123123");
@@ -48,6 +47,8 @@ public class Client {
             protoMsg1.setData(build1.toByteArray());
             ctx.writeAndFlush(protoMsg1);
         }
+
+
 
 
     }

@@ -1,16 +1,15 @@
-package com.game.data;
+package com.game.data.redis;
 
 import com.alibaba.fastjson.JSON;
-import com.game.data.redis.RedisFactory;
 import com.game.entity.Player;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DataCenter {
+public class RedisDataCenter {
 
-    public static final DataCenter INSTANCE = new DataCenter();
+    public static final RedisDataCenter INSTANCE = new RedisDataCenter();
 
-    public static DataCenter getInstance(){
+    public static RedisDataCenter getInstance(){
         return INSTANCE;
     }
 

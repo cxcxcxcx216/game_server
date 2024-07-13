@@ -41,7 +41,6 @@ public class LogicServer extends BaseServer {
 
         EventUtil.init(GameConstant.Pkg.LISTENER_PATH);//注册监听器
 
-        EventUtil.fire(GameConstant.Listener.DATA_BASE,new Object());
         LogicServer server = new LogicServer();
         ProtoMessageConsumer consumer = new ProtoMessageConsumer();
         ProtoPipeline pipline = new ProtoPipeline();
