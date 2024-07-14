@@ -27,7 +27,6 @@ public class Client {
 
         Thread.sleep(5000);
 
-        while (true){
             ProtoMessage.LoginMessageReq.Builder builder = ProtoMessage.LoginMessageReq.newBuilder();
             builder.setName("chenxing");
             builder.setPassword("123123");
@@ -46,7 +45,6 @@ public class Client {
             protoMsg1.setCode((short) MsgCode.Code.BagInfoMessageReq_VALUE);
             protoMsg1.setData(build1.toByteArray());
             ctx.writeAndFlush(protoMsg1);
-        }
 
 
 

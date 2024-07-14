@@ -13,10 +13,10 @@ public class RedisDataCenter {
         return INSTANCE;
     }
 
-    public Player getPlayer(long pid){
-        String s = RedisFactory.commands.get(Long.toString(pid));
-        if (s.isEmpty()) {
-            log.info("pid = {}玩家在数据库中不存在！",pid);
+    public Player getPlayer(String name){
+        String s = RedisFactory.commands.get("player:"+name);
+        if (s==null || s.isEmpty()) {
+            log.info("pid = {}玩家在数据库中不存在！",name);
             return null;
         }
         Player player = JSON.parseObject(s, Player.class);
@@ -25,7 +25,7 @@ public class RedisDataCenter {
 
     public void savePlayer(Player player){
         String s = JSON.toJSONString(player);
-        RedisFactory.commands.set(Long.toString(player.getPid()),s);
+        RedisFactory.commands.set("player:"+player.getName(),s);
     }
 
 

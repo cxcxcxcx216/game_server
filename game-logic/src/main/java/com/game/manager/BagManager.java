@@ -8,4 +8,6 @@ public class BagManager {
     public static BagManager getInstance(){
         return INSTANCE;
     }
+
+
 }

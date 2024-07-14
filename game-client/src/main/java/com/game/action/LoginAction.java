@@ -22,9 +22,6 @@ public class LoginAction extends ProtoBaseHandler {
         if(messageRes.getErrorCode() == 0){
             log.info("登录成功",name);
         }
-
-
-
     }
 
     @Override
