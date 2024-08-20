@@ -34,10 +34,9 @@ public class LogicServer extends BaseServer {
         MsgProcessorFactory.init();
         //链接redis
         RedisFactory.init();
+//        MongoDBFactory.init();
 
-
-        SystemProcessorFactory.init();//初始化处理器
-
+        SystemProcessorFactory.init();//初始化处理
 
         EventUtil.init(GameConstant.Pkg.LISTENER_PATH);//注册监听器
 

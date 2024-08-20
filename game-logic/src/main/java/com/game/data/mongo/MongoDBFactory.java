@@ -15,7 +15,7 @@ public class MongoDBFactory {
     private static MongoClient mongoClient;
 
     public static void init(){
-        String connectionString = "mongodb://localhost:27017"; // 默认连接到本地 MongoDB 实例
+        String connectionString = "mongodb://admin:123456@192.168.23.130:17017"; // 默认连接到本地 MongoDB 实例
         try {
             mongoClient = MongoClients.create(connectionString);
         } catch (Exception e) {

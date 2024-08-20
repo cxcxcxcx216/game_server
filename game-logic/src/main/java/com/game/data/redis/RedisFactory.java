@@ -14,7 +14,7 @@ public class RedisFactory {
     private static RedisClient redisClient;
 
     public static void init(){
-        redisClient = RedisClient.create("redis://localhost");
+        redisClient = RedisClient.create("redis://192.168.23.130");
         connection = redisClient.connect();
         commands = connection.sync();
         // 获取存储的数据并输出
